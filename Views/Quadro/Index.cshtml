@@ -1,0 +1,21 @@
+
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        
+        <div class="col-md-3">
+            <label class="col-md-2 control-label">Data</label>
+            <input type="text" name="txtData" id="txtData" class="form-control"/>
+        </div>
+
+       
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
