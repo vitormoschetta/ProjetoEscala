@@ -42,10 +42,7 @@ namespace ProjetoEscala.Controllers
             else{                
                 ViewBag.ListaQuadro = await _context.Quadro                    
                 .ToListAsync();
-            }
-
-            ViewBag.ListaQuadro = await _context.Quadro.OrderBy(q => q.Data).ToListAsync(); 
-                    
+            }                                
             
             return View();
         }

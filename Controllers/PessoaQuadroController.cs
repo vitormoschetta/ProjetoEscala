@@ -47,16 +47,15 @@ namespace ProjetoEscala.Controllers
             if (id == null)
                 return NotFound();
 
-            var pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.PessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (pessoaQuadro == null)            
+            if (ViewBag.PessoaQuadro == null)            
                 return NotFound();
             
-            ViewBag.Pessoas = await _context.Pessoa.ToListAsync();           
-            ViewBag.Local = await _context.Local.ToListAsync();     
-            ViewBag.QuadroId = pessoaQuadro.QuadroId;      
+            ViewBag.Pessoa = await _context.Pessoa.ToListAsync();           
+            ViewBag.Local = await _context.Local.ToListAsync();         
 
-            return View(pessoaQuadro);
+            return View();
         }
 
 

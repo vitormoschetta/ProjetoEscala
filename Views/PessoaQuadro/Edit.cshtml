@@ -1,18 +1,23 @@
-@model ProjetoEscala.Models.PessoaQuadro
+
 
 <form asp-action="Edit">
     <div class="form-horizontal">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <input type="hidden" asp-for="Id" value=""/>
+        <input type="hidden" id="Id" name="Id" value="@ViewBag.PessoaQuadro.Id"/>
 
        <div class="form-group">
             <label class="col-md-2 control-label">Pessoa</label>
             <div class="col-md-3">
-                <select id="PessoaId" name="PessoaId" class="form-control">
-                    @foreach (var item in ViewBag.Pessoas){                                              
-                        <option value="@item.Id">@item.Nome</option>
+                <select id="PessoaId" name="PessoaId" class="form-control">                        
+                    @foreach (var item in ViewBag.Pessoa){  
+                        if(item.Id == ViewBag.PessoaQuadro.PessoaId){
+                            <option value="@item.Id" selected>@item.Nome</option>
+                        }  
+                        else{
+                            <option value="@item.Id">@item.Nome</option>
+                        }                                                    
                     }                                         
                 </select>  
             </div>
@@ -21,15 +26,20 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Local</label>
             <div class="col-md-3">
-                <select asp-for="LocalId" class="form-control">
-                    @foreach (var item in ViewBag.Local){                                              
-                        <option value="@item.Id">@item.Nome</option>
+                <select id="LocalId" name="LocalId" class="form-control">
+                    @foreach (var item in ViewBag.Local){     
+                        if (item.Id == ViewBag.PessoaQuadro.LocalId){
+                            <option value="@item.Id" selected>@item.Nome</option>
+                        }
+                        else{
+                            <option value="@item.Id">@item.Nome</option>
+                        }                                                                 
                     }                                         
                 </select>  
             </div>
         </div>    
 
-        <input type="hidden" asp-for="QuadroId" value="@ViewBag.QuadroId" />          
+        <input type="hidden" id="QuadroId" name="QuadroId" value="@ViewBag.PessoaQuadro.QuadroId" />          
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
