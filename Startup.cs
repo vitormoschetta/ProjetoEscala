@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ProjetoEscala.Context;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace ProjetoEscala
 {
@@ -30,6 +33,20 @@ namespace ProjetoEscala
             //Conexao MySql
             services.AddDbContext<Contexto>(options =>
                 options.UseMySql(Configuration["ConexaoMySql:MySqlConnectionString"]));
+
+            //Session
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Usuario", policy => policy.RequireClaim("Usuario"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +64,8 @@ namespace ProjetoEscala
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //session
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -58,6 +76,8 @@ namespace ProjetoEscala
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

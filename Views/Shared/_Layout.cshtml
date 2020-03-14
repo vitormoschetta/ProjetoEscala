@@ -6,8 +6,6 @@
     <title>@ViewData["Title"] - Escala</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link href="~/lib/calendario/_style/default.css" rel="stylesheet" type="text/css"/>
-    <link href="~/lib/calendario/_style/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
     
 </head>
 <body>
@@ -34,6 +32,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Escala" asp-action="Index">Mês</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Quadro" asp-action="Index">Quadro</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Quadro" asp-action="Index">Escala</a>
                         </li>
 
@@ -56,8 +57,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="~/lib/calendario/_scripts/jquery.js"></script>
-    <script type="text/javascript" src="~/lib/calendario/_scripts/jquery.click-calendario-1.0-min.js"></script>		
-    <script type="text/javascript" src="~/lib/calendario/_scripts/exemplo-calendario.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

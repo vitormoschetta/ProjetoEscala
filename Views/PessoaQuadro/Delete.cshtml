@@ -1,0 +1,34 @@
+@model ProjetoEscala.Models.PessoaQuadro
+
+
+<h3>Tem certeza que deseja Excluir?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <dt>
+            Escala
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuadroId)
+        </dd>   
+        <dt>
+            Pessoa
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PessoaId)
+        </dd>     
+        <dt>
+            Local
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalId)
+        </dd>       
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

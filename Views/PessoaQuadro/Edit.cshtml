@@ -1,0 +1,46 @@
+@model ProjetoEscala.Models.PessoaQuadro
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" value=""/>
+
+       <div class="form-group">
+            <label class="col-md-2 control-label">Pessoa</label>
+            <div class="col-md-3">
+                <select id="PessoaId" name="PessoaId" class="form-control">
+                    @foreach (var item in ViewBag.Pessoas){                                              
+                        <option value="@item.Id">@item.Nome</option>
+                    }                                         
+                </select>  
+            </div>
+        </div> 
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Local</label>
+            <div class="col-md-3">
+                <select asp-for="LocalId" class="form-control">
+                    @foreach (var item in ViewBag.Local){                                              
+                        <option value="@item.Id">@item.Nome</option>
+                    }                                         
+                </select>  
+            </div>
+        </div>    
+
+        <input type="hidden" asp-for="QuadroId" value="@ViewBag.QuadroId" />          
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
