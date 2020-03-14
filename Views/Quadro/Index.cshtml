@@ -1,7 +1,22 @@
 
+<<<<<<< HEAD
 <div class="row">
     <div class="col">
         <a asp-action="Create">+ Novo</a>
+=======
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        
+        <div class="form-group">
+            <label class="col-md-2 control-label">Data</label>
+            <div class="col-md-3">
+                <input type="date" class="form-control"/>
+            </div>
+        </div>
+
+       
+>>>>>>> 780d4ae9ac7cfaf2809ac0432c5b3e050af00719
     </div>
     <div id="filtro-escala" class="col" data-url="@Url.Action("QuadroPorEscala","Quadro")">
         <select class="form-control" onchange="SelectEscala(this.value)" >
