@@ -1,0 +1,3 @@
+Mudar atributo 'Mes' para 'Nome' da classe 'Escala'
+
+Quando adicionar um 'Local', Triger no banco para add 
