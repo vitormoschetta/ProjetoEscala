@@ -1,3 +1,13 @@
+Contador de participação por pessoa
+
+Ao adicionar um +Novo Quadro, já passar qual o Mês/Escala em trabalho/selecionado
+
+Imprimir por mês
+
+
+
 Mudar atributo 'Mes' para 'Nome' da classe 'Escala'
 
-Quando adicionar um 'Local', Triger no banco para add 
+
+
+
