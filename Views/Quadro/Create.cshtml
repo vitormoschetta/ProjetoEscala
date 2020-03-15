@@ -1,4 +1,5 @@
 @model ProjetoEscala.Models.Quadro
+@using Microsoft.AspNetCore.Http;
 
 
 <form asp-action="Create">
@@ -8,8 +9,14 @@
             <label class="col-md-2 control-label">Escala</label>
             <div class="col-md-3">
                 <select asp-for="EscalaId" class="form-control">
-                    @foreach (var item in ViewBag.Escala){                                              
-                        <option value="@item.Id">@item.Mes</option>
+                    @foreach (var item in ViewBag.Escala){
+                        if (Context.Session.GetInt32("Escala_Mes") == item.Id){
+                            <option value="@item.Id" selected>@item.Mes</option>
+                        }         
+                        else{
+                            <option value="@item.Id">@item.Mes</option>
+                        }                                     
+                        
                     }                                         
                 </select>  
             </div>

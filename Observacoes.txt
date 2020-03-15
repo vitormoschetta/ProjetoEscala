@@ -1,8 +1,7 @@
 Contador de participação por pessoa
 
-Ao adicionar um +Novo Quadro, já passar qual o Mês/Escala em trabalho/selecionado
 
-Imprimir por mês
+Imprimir escala por mês selecionado
 
 
 

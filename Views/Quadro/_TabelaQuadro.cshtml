@@ -43,8 +43,9 @@
             </td>
         </tr>        
         @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
-        {            
+        {     
             if (itemPessoaQuadro.QuadroId == item.Id){
+                
                 <tr>
                     <td class="col-md-3">
 
@@ -59,7 +60,7 @@
                     <td>
                         @foreach (var itemPessoa in ViewBag.Pessoa){
                             if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
-                                @itemPessoa.Nome
+                                @itemPessoa.Nome                                
                             }
                         }
                     <td>
@@ -73,5 +74,5 @@
 
     }
     </tbody>
-
 </table>
+
