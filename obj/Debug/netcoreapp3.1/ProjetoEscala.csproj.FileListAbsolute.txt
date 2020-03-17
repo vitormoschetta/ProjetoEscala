@@ -287,3 +287,4 @@ D:\ProjetoEscala\obj\Debug\netcoreapp3.1\staticwebassets\ProjetoEscala.StaticWeb
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.dll
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.pdb
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.genruntimeconfig.cache
+D:\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Quadro\Print.cshtml.g.cs
