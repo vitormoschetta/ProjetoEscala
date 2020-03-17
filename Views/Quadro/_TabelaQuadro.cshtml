@@ -1,34 +1,15 @@
+@foreach (var item in ViewBag.ListaQuadro) 
+{
+<div style="float:left" class="col-sm-6">
 <table class="table table-borderless table-hover table-sm">
-    <thead>
-        <tr>
-            <th>
-                Data
-            </th>
-            <th>
-                Escala
-            </th>
-            <th>
-                Evento
-            </th>   
-            <th></th>
-        </tr>
-    </thead>
-
+    
     <tbody>
-    @foreach (var item in ViewBag.ListaQuadro) 
-    {
+    
         <tr style="background-color:#e5e3e3">
-            <td>
-                @item.Data
+            <td class="col-sm-1">
+                @item.Data.ToString("dd/MM/yyyy")
             </td>
-            <td>
-                @foreach (var itemEscala in ViewBag.Escala){
-                    if (itemEscala.Id == item.EscalaId){
-                        @itemEscala.Mes;
-                    }
-                }
-            </td>
-            <td>
+            <td class="col-sm-2">
                 @foreach (var itemEvento in ViewBag.Evento){
                     if (itemEvento.Id == item.EventoId){
                         @itemEvento.Nome;
@@ -36,10 +17,10 @@
                 }
             </td>
 
-            <td>
+            <td class="col-sm-2">
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="Create" asp-controller="PessoaQuadro" asp-route-id="@item.Id">+ Pessoas</a> 
+                <a asp-action="Create" asp-controller="PessoaQuadro" asp-route-id="@item.Id">+ Manual</a> 
             </td>
         </tr>        
         @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
@@ -47,9 +28,6 @@
             if (itemPessoaQuadro.QuadroId == item.Id){
                 
                 <tr>
-                    <td class="col-md-3">
-
-                    </td>
                     <td>
                         @foreach (var itemLocal in ViewBag.Local){
                             if(itemLocal.Id == itemPessoaQuadro.LocalId){
@@ -57,13 +35,14 @@
                             }
                         }
                     </td>
-                    <td>
+                    <td >
                         @foreach (var itemPessoa in ViewBag.Pessoa){
                             if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
                                 @itemPessoa.Nome                                
                             }
                         }
-                    <td>
+                    </td>
+                    <td >
                         <a asp-action="Edit" asp-controller="PessoaQuadro" asp-route-id="@itemPessoaQuadro.Id">Edit</a> |
                         <a asp-action="Delete" asp-controller="PessoaQuadro" asp-route-id="@itemPessoaQuadro.Id">Delete</a>                             
                     </td>
@@ -72,7 +51,9 @@
 
         }
 
-    }
+    
     </tbody>
 </table>
+</div>
+}
 

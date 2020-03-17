@@ -101,34 +101,12 @@ namespace ProjetoEscala.Migrations
                 {
                     table.PrimaryKey("PK_PessoaQuadro", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PessoaQuadro_Local_LocalId",
-                        column: x => x.LocalId,
-                        principalTable: "Local",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PessoaQuadro_Pessoa_PessoaId",
-                        column: x => x.PessoaId,
-                        principalTable: "Pessoa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_PessoaQuadro_Quadro_QuadroId",
                         column: x => x.QuadroId,
                         principalTable: "Quadro",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PessoaQuadro_LocalId",
-                table: "PessoaQuadro",
-                column: "LocalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PessoaQuadro_PessoaId",
-                table: "PessoaQuadro",
-                column: "PessoaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PessoaQuadro_QuadroId",
@@ -149,13 +127,13 @@ namespace ProjetoEscala.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PessoaQuadro");
-
-            migrationBuilder.DropTable(
                 name: "Local");
 
             migrationBuilder.DropTable(
                 name: "Pessoa");
+
+            migrationBuilder.DropTable(
+                name: "PessoaQuadro");
 
             migrationBuilder.DropTable(
                 name: "Quadro");

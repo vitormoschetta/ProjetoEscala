@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Sempron\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Sempron\\.nuget\\packages"
+      "C:\\Users\\Aluno\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Aluno\\.nuget\\packages"
     ]
   }
 }

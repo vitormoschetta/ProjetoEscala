@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using ProjetoEscala.Context;
 using ProjetoEscala.Models;
 
+
 namespace ProjetoEscala.Controllers
 {
     public class QuadroController: Controller
@@ -103,6 +104,8 @@ namespace ProjetoEscala.Controllers
                 return NotFound();
 
             var Quadro = await _context.Quadro.SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.Evento = await _context.Evento.ToListAsync();
+
             if (Quadro == null)            
                 return NotFound();
 
@@ -112,7 +115,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Quadro Quadro)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,EventoId,EscalaId")] Quadro Quadro)
         {
             if (id != Quadro.Id)
                 return NotFound();            

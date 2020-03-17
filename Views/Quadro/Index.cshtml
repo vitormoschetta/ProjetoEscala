@@ -2,8 +2,15 @@
 
 <div class="row">
     <div class="col">
-        <a asp-action="Create">+ Novo</a>    
+        <a asp-action="Create">+ Novo Quadro</a>    
     </div>
+    <div class="col">
+        <a asp-action="LocalGeral" asp-controller="PessoaQuadro">+ Add Local Geral</a>    
+    </div>    
+    <div class="col">
+        <a asp-action="GerarEscala" asp-controller="PessoaQuadro">+ Gerar Escala</a>    
+    </div>  
+
     <div id="filtro-escala" class="col" data-url="@Url.Action("QuadroPorEscala","Quadro")">
         <select id="escalaId" name="escalaId" class="form-control" onchange="SelectEscala(this.value)" >   
             <option value="0" selected="selected">Selecione Aqui a Escala / Mês</option>        
@@ -19,6 +26,7 @@
     </div>    
 </div>
 
+<br/>
 
 <div id="tabelaQuadro">
     @await Html.PartialAsync("_TabelaQuadro")

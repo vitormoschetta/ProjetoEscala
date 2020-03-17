@@ -9,14 +9,14 @@ using ProjetoEscala.Context;
 namespace ProjetoEscala.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200312235742_teste")]
+    [Migration("20200317193922_teste")]
     partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("ProjetoEscala.Models.Escala", b =>
@@ -92,10 +92,6 @@ namespace ProjetoEscala.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocalId");
-
-                    b.HasIndex("PessoaId");
-
                     b.HasIndex("QuadroId");
 
                     b.ToTable("PessoaQuadro");
@@ -127,19 +123,7 @@ namespace ProjetoEscala.Migrations
 
             modelBuilder.Entity("ProjetoEscala.Models.PessoaQuadro", b =>
                 {
-                    b.HasOne("ProjetoEscala.Models.Local", "Local")
-                        .WithMany()
-                        .HasForeignKey("LocalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoEscala.Models.Pessoa", "Pessoa")
-                        .WithMany()
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoEscala.Models.Quadro", "Quadro")
+                    b.HasOne("ProjetoEscala.Models.Quadro", null)
                         .WithMany("ListaPessoaQuadro")
                         .HasForeignKey("QuadroId")
                         .OnDelete(DeleteBehavior.Cascade)

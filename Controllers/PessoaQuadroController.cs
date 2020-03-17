@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoEscala.Context;
 using ProjetoEscala.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ProjetoEscala.Controllers
 {
@@ -112,5 +115,95 @@ namespace ProjetoEscala.Controllers
         }
 
 
+        public async Task<IActionResult> LocalGeral()
+        {          
+            ViewBag.Local = await _context.Local.ToListAsync();           
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> LocalGeralCreate(int LocalId)
+        {            
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");      
+                      
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escala).ToListAsync();            
+
+            foreach (var item in listaQuadro){
+                PessoaQuadro pessoaQuadro = new PessoaQuadro();
+                pessoaQuadro.QuadroId = item.Id;
+                pessoaQuadro.LocalId = LocalId;
+
+                _context.Add(pessoaQuadro);
+                await _context.SaveChangesAsync();
+            }
+            
+     
+            return RedirectToAction("Index", "Quadro");            
+           
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LimparLocal()
+        {            
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");      
+                      
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escala).ToListAsync();
+
+            //var vinculo = _context.Quadro.FromSqlRaw("select top 1 id from quadro where escalaId = " + escala);            
+            //var listaPessoaQuadro = await _context.PessoaQuadro.Where(p => p.QuadroId == vinculo.Id).ToListAsync();   
+            var listaPessoaQuadro = await _context.PessoaQuadro.ToListAsync();
+
+            var pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(p => p.Id == 10);
+                  
+            foreach (var item in listaQuadro){
+                foreach (var item02 in listaPessoaQuadro){
+                    if (item.Id == item02.QuadroId){                        
+                        pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(p => p.QuadroId == item.Id);
+                        _context.PessoaQuadro.Remove(pessoaQuadro);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }            
+     
+            return RedirectToAction("Index", "Quadro");            
+           
+        }
+
+
+        
+        public async Task<IActionResult> GerarEscala()
+        {            
+            HttpContext.Session.SetInt32("teste", 10);
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");      
+                      
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escala).ToListAsync();   
+
+            var listaPessoa = await _context.Pessoa.ToListAsync();                     
+            var cont = 0;
+            var controle = listaPessoa.Count;
+
+            foreach (var quadro in listaQuadro){
+                var listaPessoaQuadro = await _context.PessoaQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
+                foreach (var pessoaQuadro in listaPessoaQuadro){                      
+                    pessoaQuadro.PessoaId = listaPessoa[cont].Id;                    
+                    _context.Update(pessoaQuadro);
+                    await _context.SaveChangesAsync();
+
+                    cont = cont + 1;
+                    if (cont >= controle)
+                        cont = 0;
+                }
+               
+            }            
+            
+            return RedirectToAction("Index", "Quadro");            
+           
+        }
+
+
     }
-}
+}   

@@ -23,9 +23,6 @@ namespace ProjetoEscala.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Ano")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Mes")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -93,10 +90,6 @@ namespace ProjetoEscala.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocalId");
-
-                    b.HasIndex("PessoaId");
-
                     b.HasIndex("QuadroId");
 
                     b.ToTable("PessoaQuadro");
@@ -128,19 +121,7 @@ namespace ProjetoEscala.Migrations
 
             modelBuilder.Entity("ProjetoEscala.Models.PessoaQuadro", b =>
                 {
-                    b.HasOne("ProjetoEscala.Models.Local", "Local")
-                        .WithMany()
-                        .HasForeignKey("LocalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoEscala.Models.Pessoa", "Pessoa")
-                        .WithMany()
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoEscala.Models.Quadro", "Quadro")
+                    b.HasOne("ProjetoEscala.Models.Quadro", null)
                         .WithMany("ListaPessoaQuadro")
                         .HasForeignKey("QuadroId")
                         .OnDelete(DeleteBehavior.Cascade)
