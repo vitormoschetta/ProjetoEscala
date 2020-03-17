@@ -1,5 +1,73 @@
+@using System.Globalization;
+
+<link rel="stylesheet" href="~/css/print.css" />
+
 
 <div class="col" style="text-align: right">
     <i class="fa fa-print fa-2x" style="cursor:pointer" aria-hidden="true" onClick="window.print()"></i>
 </div>
+
+<nav>nav</nav>
+
+<div style="width: 100px">
+    <img src="~/images/logo.jpg" />
+</div>
+
+
+@foreach (var item in ViewBag.ListaQuadro) 
+{
+<div style="float:left" class="col-sm-4">
+<table class="table table-borderless table-hover table-sm">
+    
+    <tbody>
+    
+        <tr style="background-color:#5c9ded">
+            <td class="col-sm-2">
+                @item.Data.ToString("dd/MM/yyyy")
+            </td>
+            <td class="col-sm-2">                
+                @foreach (var itemEvento in ViewBag.Evento){
+                    if (itemEvento.Id == item.EventoId){
+                        @itemEvento.Nome
+                    }
+                }
+            </td>
+            <td class="col-sm-1">
+                @{
+                    var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
+                    @diaExtenso
+                }
+            </td>
+        </tr>        
+        @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
+        {     
+            if (itemPessoaQuadro.QuadroId == item.Id){
+                
+                <tr>
+                    <td>
+                        @foreach (var itemLocal in ViewBag.Local){
+                            if(itemLocal.Id == itemPessoaQuadro.LocalId){
+                                @itemLocal.Nome
+                            }
+                        }
+                    </td>
+                    <td >
+                        @foreach (var itemPessoa in ViewBag.Pessoa){
+                            if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
+                                @itemPessoa.Nome                                
+                            }
+                        }
+                    </td>    
+                    <td>
+                        
+                    </td>               
+                </tr>
+            }
+
+        }
+    
+    </tbody>
+</table>
+</div>
+}
 

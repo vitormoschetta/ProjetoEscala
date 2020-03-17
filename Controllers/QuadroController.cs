@@ -27,6 +27,24 @@ namespace ProjetoEscala.Controllers
 
         public async Task<IActionResult> Print()
         {
+            ViewBag.Local = await _context.Local.ToListAsync();
+            ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
+            ViewBag.Escala = await _context.Escala.ToListAsync();
+            ViewBag.Evento = await _context.Evento.ToListAsync();   
+            ViewBag.PessoaQuadro = await _context.PessoaQuadro.ToListAsync();   
+
+            var escalaId = HttpContext.Session.GetInt32("Escala_Mes");  
+        
+            if(escalaId != 0){
+                ViewBag.ListaQuadro = await _context.Quadro
+                    .Where(q => q.EscalaId == escalaId)
+                    .OrderBy(q => q.Data)
+                    .ToListAsync();
+            }
+            else{
+                ViewBag.ListaQuadro = await _context.Quadro                    
+                    .ToListAsync();
+            }
             
             return View();
         }
