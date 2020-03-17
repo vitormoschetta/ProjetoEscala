@@ -1,8 +1,9 @@
-Contador de participação por pessoa
+Dia da semana identificado automaticamente
+
+Contador de participaï¿½ï¿½o por pessoa
 
 
-Imprimir escala por mês selecionado
-
+Imprimir escala por mï¿½s selecionado
 
 
 Mudar atributo 'Mes' para 'Nome' da classe 'Escala'

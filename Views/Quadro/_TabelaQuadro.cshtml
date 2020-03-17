@@ -1,3 +1,5 @@
+@using System.Globalization;
+
 @foreach (var item in ViewBag.ListaQuadro) 
 {
 <div style="float:left" class="col-sm-6">
@@ -8,11 +10,17 @@
         <tr style="background-color:#e5e3e3">
             <td class="col-sm-1">
                 @item.Data.ToString("dd/MM/yyyy")
+                <div style="text-align:left">
+                @{
+                    var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
+                    @diaExtenso
+                }
+                </div>
             </td>
-            <td class="col-sm-2">
+            <td class="col-sm-2">                
                 @foreach (var itemEvento in ViewBag.Evento){
                     if (itemEvento.Id == item.EventoId){
-                        @itemEvento.Nome;
+                        @itemEvento.Nome
                     }
                 }
             </td>
