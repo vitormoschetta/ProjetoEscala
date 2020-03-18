@@ -112,14 +112,12 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Data,EventoId,EscalaId")] Quadro Quadro)
+        public async Task<IActionResult> Create([Bind("Id,EscalaId,Data,EventoId,Destaque")] Quadro Quadro)
         {
-            if (ModelState.IsValid){
-                _context.Add(Quadro);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(Quadro);
+            _context.Add(Quadro);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+            
         }
 
 
@@ -140,7 +138,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,EventoId,EscalaId")] Quadro Quadro)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EscalaId,Data,EventoId,Destaque")] Quadro Quadro)
         {
             if (id != Quadro.Id)
                 return NotFound();            

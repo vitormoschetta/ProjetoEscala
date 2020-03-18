@@ -15,7 +15,9 @@ namespace ProjetoEscala.Models
 
         public ICollection<PessoaQuadro> ListaPessoaQuadro {get; set;}
 
-        public DateTime Data {get; set;}
+        public DateTime Data {get; set;}        
+        
+        public int Destaque {get; set;} 
 
     }
 }

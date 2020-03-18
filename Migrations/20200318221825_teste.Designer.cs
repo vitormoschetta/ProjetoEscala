@@ -9,8 +9,8 @@ using ProjetoEscala.Context;
 namespace ProjetoEscala.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200317235617_teste05")]
-    partial class teste05
+    [Migration("20200318221825_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,9 @@ namespace ProjetoEscala.Migrations
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Destaque")
+                        .HasColumnType("int");
 
                     b.Property<int>("EscalaId")
                         .HasColumnType("int");

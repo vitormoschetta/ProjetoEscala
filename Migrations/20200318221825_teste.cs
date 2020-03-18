@@ -68,7 +68,8 @@ namespace ProjetoEscala.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EventoId = table.Column<int>(nullable: false),
                     EscalaId = table.Column<int>(nullable: false),
-                    Data = table.Column<DateTime>(nullable: false)
+                    Data = table.Column<DateTime>(nullable: false),
+                    Destaque = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

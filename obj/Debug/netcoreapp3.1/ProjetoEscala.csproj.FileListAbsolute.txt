@@ -288,7 +288,6 @@ D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.dll
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.pdb
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.genruntimeconfig.cache
 D:\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Quadro\Print.cshtml.g.cs
-D:\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Quadro\Print02.cshtml.g.cs
 D:\ProjetoEscala\bin\Debug\netcoreapp3.1\Microsoft.Data.Sqlite.dll
 D:\ProjetoEscala\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 D:\ProjetoEscala\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Sqlite.dll

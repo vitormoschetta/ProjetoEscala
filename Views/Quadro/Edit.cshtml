@@ -3,36 +3,52 @@
 @{
     ViewData["Title"] = "Edit";
 }
+ 
 
 <form asp-action="Edit">
-    <div class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
 
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="EscalaId" />  
+                
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Data</label>
+                    <div>                
+                        <input type="date" asp-for="Data" class="form-control"/>
+                    </div>
+                </div>
 
-        <input type="hidden" asp-for="Id" />
-        <input type="hidden" asp-for="EscalaId" />        
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Evento</label>
+                    <div>                
+                        <select id="EventoId" name="EventoId" class="form-control">
+                            @foreach (var item in ViewBag.Evento){  
+                                if (item.Id == Model.EventoId){
+                                    <option value="@item.Id" selected>@item.Nome</option>
+                                }
+                                else{
+                                    <option value="@item.Id">@item.Nome</option>
+                                }                                                                            
+                            }                                         
+                        </select>  
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="col-md-2 control-label">Data</label>
-            <div class="col-md-3">                
-                <input type="date" asp-for="Data" class="form-control"/>
             </div>
-        </div> 
 
-        <div class="form-group">
-            <label class="col-md-2 control-label">Evento</label>
-            <div class="col-md-3">                
-                <select asp-for="EventoId" class="form-control">
-                    @foreach (var item in ViewBag.Evento){                                              
-                        <option value="@item.Id">@item.Nome</option>
-                    }                                         
-                </select>  
+            <div class="col-3 pl-5 pt-10" >                
+                <div class="form-check">
+                    <label class="form-check-label">Destacar esse quadro?</label>
+                    <select asp-for="Destaque" class="form-control" asp-items="Html.GetEnumSelectList<EDestaque>()"></select>
+                </div>                            
             </div>
+
         </div>
-        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Concluir" class="btn btn-default" />
             </div>
         </div>
     </div>

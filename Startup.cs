@@ -30,23 +30,16 @@ namespace ProjetoEscala
         {
             services.AddControllersWithViews();
 
-            /*Conexao MySql
+            //Conexao MySql
             services.AddDbContext<Contexto>(options =>
                 options.UseMySql(Configuration["ConexaoMySql:MySqlConnectionString"]));
-                */
-
-            //Conexao SqLite
-            services.AddDbContext<Contexto>(options =>
-                options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
                 
 
-            /*
-            services.AddDbContext<Contexto>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));*/
-
-
-            
-
+            /*/Conexao SqLite
+            services.AddDbContext<Contexto>(options =>
+                options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
+                */
+          
             //Session
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
