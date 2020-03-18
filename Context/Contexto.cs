@@ -14,5 +14,12 @@ namespace ProjetoEscala.Context
         public DbSet<Pessoa> Pessoa {get; set;}
         public DbSet<PessoaQuadro> PessoaQuadro {get;set;}
         public DbSet<Quadro> Quadro {get;set;}
+
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .UseSqlite(@"Data Source=E:\SqLite\SQLiteDatabaseBrowserPortable\Data\Developer.db;");
+        }*/
     }
 }
