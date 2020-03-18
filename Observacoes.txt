@@ -1,10 +1,8 @@
-Dia da semana identificado automaticamente
+Ao adicionar local, dar opção de incluir mais de um registro de uma vez para o mesmo local;
+
+Configurar para cada Pessoa o(s) local(is) que pode tirar escala;
 
 Contador de participa��o por pessoa
-
-
-Imprimir escala por m�s selecionado
-
 
 Mudar atributo 'Mes' para 'Nome' da classe 'Escala'
 
