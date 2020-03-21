@@ -5958,19 +5958,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aluno\\.nuget\\packages\\": {}
+    "C:\\Users\\Sempron\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjetoEscala\\ProjetoEscala.csproj",
+      "projectUniqueName": "C:\\GitHub\\ProjetoEscala\\ProjetoEscala.csproj",
       "projectName": "ProjetoEscala",
-      "projectPath": "D:\\ProjetoEscala\\ProjetoEscala.csproj",
-      "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjetoEscala\\obj\\",
+      "projectPath": "C:\\GitHub\\ProjetoEscala\\ProjetoEscala.csproj",
+      "packagesPath": "C:\\Users\\Sempron\\.nuget\\packages\\",
+      "outputPath": "C:\\GitHub\\ProjetoEscala\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Sempron\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6043,7 +6043,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

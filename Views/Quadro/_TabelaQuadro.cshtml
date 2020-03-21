@@ -4,18 +4,20 @@
 @foreach (var item in ViewBag.ListaQuadro) 
 {
 <div style="float:left" class="col-sm-6">
-<table class="table table-borderless table-hover table-sm">
+<table class="table table-hover table-sm">
     
     <tbody>
     
-        <tr style="background-color:#e5e3e3">
-            <td class="col-sm-1">
-                @item.Data.ToString("dd/MM/yyyy")
-                <div style="text-align:left">
-                @{
-                    var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
-                    @diaExtenso
-                }
+        <tr style="background-color:#889fce">
+            <td class="col-sm-2">
+                <div style="float:right">
+                    @item.Data.ToString("dd/MM/yyyy")
+                </div>                
+                <div style="float:left">
+                    @{
+                        var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
+                        @diaExtenso
+                    }
                 </div>
             </td>
             <td class="col-sm-2">                

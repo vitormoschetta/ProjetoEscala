@@ -1,4 +1,4 @@
-@model IEnumerable<ProjetoEscala.Models.Local>
+@model IEnumerable<ProjetoEscala.Models.Aviso>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +11,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Escala
+            </th>
+            <th>
+                Mensagem
             </th>
             <th></th>
         </tr>
@@ -20,7 +23,10 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.EscalaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mensagem)
             </td>
 
             <td>

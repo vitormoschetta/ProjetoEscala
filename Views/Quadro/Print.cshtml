@@ -1,145 +1,154 @@
 @using System.Globalization;
+@using Microsoft.AspNetCore.Http;
 
+
+<!-- icone impressao -->
 <div style="text-align: right">
     <i class="fa fa-print fa-2x" style="cursor:pointer" aria-hidden="true" onClick="window.print()"></i>
 </div>
 
+<div style="text-align:center; background-color:#5c9ded; color:white; font-weight:bold; border-radius:10px;" >
+    <h2>ESCALA DE OFICIAIS</h2>
+</div>
 
 
-<div class="container">
+<div class="container pt-4">
     <div class="row">
 
-        <div class="col-2 pl-0">
-            <div class="float-left">
-                <img src="~/images/logo.jpg" class="rounded float-left"/>
-            </div>  
-            <div>
-            @foreach (var item in ViewBag.ListaQuadro) 
-            {
-                if (item.Destaque == 2)
-                {
-                    <div style="float:left" class="col-sm-4">
-                        <table class="table table-borderless table-hover table-sm">
-                            
-                            <tbody>
-                            
-                                <tr style="background-color:#5c9ded">
-                                    <td class="col-sm-2">
-                                        @item.Data.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td class="col-sm-2">                
-                                        @foreach (var itemEvento in ViewBag.Evento){
-                                            if (itemEvento.Id == item.EventoId){
-                                                @itemEvento.Nome
-                                            }
-                                        }
-                                    </td>
-                                    <td class="col-sm-1">
-                                        @{
-                                            var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
-                                            @diaExtenso
-                                        }
-                                    </td>
-                                </tr>        
-                                @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
-                                {     
-                                    if (itemPessoaQuadro.QuadroId == item.Id){
-                                        
-                                        <tr>
-                                            <td>
-                                                @foreach (var itemLocal in ViewBag.Local){
-                                                    if(itemLocal.Id == itemPessoaQuadro.LocalId){
-                                                        @itemLocal.Nome
-                                                    }
-                                                }
-                                            </td>
-                                            <td >
-                                                @foreach (var itemPessoa in ViewBag.Pessoa){
-                                                    if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
-                                                        @itemPessoa.Nome                                
-                                                    }
-                                                }
-                                            </td>    
-                                            <td>
-                                                
-                                            </td>               
-                                        </tr>
-                                    }
-
-                                }
-                            
-                            </tbody>
-                        </table>
-                    </div>
-                }
-            }
-            </div>          
-        </div>
-
-        <div class="col-10 pl-5" >
-            <h1>Escala de Oficiais</h1> 
-
+        <!-- parte padrao -->
+        <div class="col-9">
             @foreach (var item in ViewBag.ListaQuadro) 
             {
                 if (item.Destaque != 2)
                 {
-                    <div style="float:left" class="col-sm-4">
-                        <table class="table table-borderless table-hover table-sm">
-                            
-                            <tbody>
-                            
-                                <tr style="background-color:#5c9ded">
-                                    <td class="col-sm-2">
-                                        @item.Data.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td class="col-sm-2">                
-                                        @foreach (var itemEvento in ViewBag.Evento){
-                                            if (itemEvento.Id == item.EventoId){
-                                                @itemEvento.Nome
-                                            }
+                    //Inicio Quadro
+                    <div style="float:left;" class="col-sm-4 pl-5 pb-5">
+         
+                            <div class="row" style="background-color:#5c9ded; color:white; font-weight:bold; border-radius:10px;">
+                                <div class="col-6">
+                                    @item.Data.ToString("dd/MM/yyyy")
+                                </div>
+                                <div class="col-3">
+                                    @foreach (var itemEvento in ViewBag.Evento){
+                                        if (itemEvento.Id == item.EventoId){
+                                            @itemEvento.Nome
                                         }
-                                    </td>
-                                    <td class="col-sm-1">
-                                        @{
-                                            var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
-                                            @diaExtenso
-                                        }
-                                    </td>
-                                </tr>        
-                                @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
-                                {     
-                                    if (itemPessoaQuadro.QuadroId == item.Id){
-                                        
-                                        <tr>
-                                            <td>
-                                                @foreach (var itemLocal in ViewBag.Local){
-                                                    if(itemLocal.Id == itemPessoaQuadro.LocalId){
-                                                        @itemLocal.Nome
-                                                    }
-                                                }
-                                            </td>
-                                            <td >
-                                                @foreach (var itemPessoa in ViewBag.Pessoa){
-                                                    if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
-                                                        @itemPessoa.Nome                                
-                                                    }
-                                                }
-                                            </td>    
-                                            <td>
-                                                
-                                            </td>               
-                                        </tr>
                                     }
+                                </div>
+                                <div class="col-2">
+                                    @{
+                                        var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
+                                        @diaExtenso
+                                    }
+                                </div>
+                            </div>
+                            @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
+                            {     
+                                if (itemPessoaQuadro.QuadroId == item.Id){
+                                    <div class="row">
+                                        <div class="col-7">
+                                            @foreach (var itemLocal in ViewBag.Local){
+                                                if(itemLocal.Id == itemPessoaQuadro.LocalId){
+                                                    @itemLocal.Nome
+                                                }
+                                            }
+                                        </div>
+                                        <div class="col-2"> 
+                                            @foreach (var itemPessoa in ViewBag.Pessoa){
+                                                if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
+                                                    @itemPessoa.Nome                                
+                                                }
+                                            }
+                                        </div>
 
+                                    </div>
                                 }
-                            
-                            </tbody>
-                        </table>
+                            }
+               
                     </div>
                 }
             }
-        </div>        
+        </div>
+
+
+        
+        <!-- parte destaque -->
+        <div class="col-3">
+
+            @foreach (var item in ViewBag.ListaQuadro) 
+            {
+                if (item.Destaque == 2)
+                {
+                    //Inicio Quadro
+                    <div class="col-12 pt-1 pb-5" style="float: inline-end;">
+         
+                            <div class="row" style="background-color:#e5c552; font-weight:bold; border-radius:10px;">
+                                <div class="col-5">
+                                    @item.Data.ToString("dd/MM/yyyy")
+                                </div>
+                                <div class="col-4">
+                                    @foreach (var itemEvento in ViewBag.Evento){
+                                        if (itemEvento.Id == item.EventoId){
+                                            @itemEvento.Nome
+                                        }
+                                    }
+                                </div>
+                                <div class="col-2">
+                                    @{
+                                        var diaExtenso = new CultureInfo("pt-BR").DateTimeFormat.GetAbbreviatedDayName(item.Data.DayOfWeek);
+                                        @diaExtenso
+                                    }
+                                </div>
+                            </div>
+                            @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
+                            {     
+                                if (itemPessoaQuadro.QuadroId == item.Id){
+                                    <div class="row">
+                                        <div class="col-7">
+                                            @foreach (var itemLocal in ViewBag.Local){
+                                                if(itemLocal.Id == itemPessoaQuadro.LocalId){
+                                                    @itemLocal.Nome
+                                                }
+                                            }
+                                        </div>
+                                        <div class="col-2"> 
+                                            @foreach (var itemPessoa in ViewBag.Pessoa){
+                                                if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
+                                                    @itemPessoa.Nome                                
+                                                }
+                                            }
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+               
+                    </div>
+                }
+            }
+        </div>    
+    </div>
+
+    <div class="row">
+
+        <!-- Logo igreja -->
+        <div class="col-3">            
+            <div class="col-sm-4">
+                <img src="~/images/logo.jpg" style="width:200px;"/>
+            </div>  
+        </div>
+
+        <!-- Mensagens/Avisos -->
+        <div class="col-7 pt-10">
+            @foreach (var item in ViewBag.ListaMensagem){
+                <div class="pb-3">                   
+                    @item.Mensagem
+                </div>                
+            }
+        </div>
+
+        
 
     </div>
+    
 </div>
-

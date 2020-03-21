@@ -1,0 +1,44 @@
+@model ProjetoEscala.Models.Aviso
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="EscalaId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EscalaId" class="form-control" />
+                <span asp-validation-for="EscalaId" class="text-danger"></span>
+            </div>
+        </div>  
+
+        <div class="form-group">
+            <label asp-for="Mensagem" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Mensagem" class="form-control" />
+                <span asp-validation-for="Mensagem" class="text-danger"></span>
+            </div>
+        </div>        
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

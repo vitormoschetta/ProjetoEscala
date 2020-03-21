@@ -2,39 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoEscala.Context;
 
 namespace ProjetoEscala.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20200320191048_teste")]
+    partial class teste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("ProjetoEscala.Models.Aviso", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("EscalaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mensagem")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EscalaId");
-
-                    b.ToTable("Aviso");
-                });
 
             modelBuilder.Entity("ProjetoEscala.Models.Escala", b =>
                 {
@@ -139,15 +122,6 @@ namespace ProjetoEscala.Migrations
                     b.HasIndex("EventoId");
 
                     b.ToTable("Quadro");
-                });
-
-            modelBuilder.Entity("ProjetoEscala.Models.Aviso", b =>
-                {
-                    b.HasOne("ProjetoEscala.Models.Escala", "Escala")
-                        .WithMany()
-                        .HasForeignKey("EscalaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjetoEscala.Models.PessoaQuadro", b =>
