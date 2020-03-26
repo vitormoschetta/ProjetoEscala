@@ -9,9 +9,9 @@ namespace ProjetoEscala.Context
         {        }
         
         public DbSet<Escala> Escala {get; set;}
-        public DbSet<Evento> Evento {get;set;}
-        public DbSet<Local> Local {get;set;}
+        public DbSet<Evento> Evento {get;set;}        
         public DbSet<Pessoa> Pessoa {get; set;}
+        public DbSet<Local> Local {get;set;}
         public DbSet<PessoaQuadro> PessoaQuadro {get;set;}
         public DbSet<Quadro> Quadro {get;set;}
         public DbSet<Aviso> Aviso {get;set;}

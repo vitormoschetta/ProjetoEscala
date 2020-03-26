@@ -23,7 +23,7 @@ namespace ProjetoEscala.Controllers
 
 
         public async Task<IActionResult> Index()
-        {
+        {        
             var listaLocal = await _context.Local.ToListAsync();
             return View(listaLocal);
         }
