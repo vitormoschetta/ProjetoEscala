@@ -24,6 +24,7 @@ namespace ProjetoEscala.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.ListaLocal = await _context.Local.ToListAsync();
             var listaPessoa = await _context.Pessoa.ToListAsync();
             return View(listaPessoa);
         }

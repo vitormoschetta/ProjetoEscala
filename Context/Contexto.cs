@@ -15,6 +15,8 @@ namespace ProjetoEscala.Context
         public DbSet<PessoaQuadro> PessoaQuadro {get;set;}
         public DbSet<Quadro> Quadro {get;set;}
         public DbSet<Aviso> Aviso {get;set;}
+        public DbSet<PessoaLocal> PessoaLocal {get;set;}
+        
 
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

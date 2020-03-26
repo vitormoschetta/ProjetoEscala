@@ -14,6 +14,9 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th></th>
+            <td>
+                Locais
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +30,13 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
+            <td>
+                foreach (var local in ViewBag.ListaLocal){
+                    <input type="checkbox" value="@local.Id"/>
+                    <label>@local.Nome</label>
+                }
+            </td>
         </tr>
-}
+    }
     </tbody>
 </table>

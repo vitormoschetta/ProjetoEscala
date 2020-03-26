@@ -176,25 +176,35 @@ namespace ProjetoEscala.Controllers
         
         public async Task<IActionResult> GerarEscala()
         {            
-            HttpContext.Session.SetInt32("teste", 10);
             var escala = HttpContext.Session.GetInt32("Escala_Mes");      
                       
-            var listaQuadro = await _context.Quadro
-                .Where(q => q.EscalaId == escala).ToListAsync();   
+            // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
+            var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();   
 
-            var listaPessoa = await _context.Pessoa.ToListAsync();                     
+            // lista todas as pessoas
+            var listaPessoa = await _context.Pessoa.ToListAsync();  
+            //Pega nr total de pessoas:                               
+            var totalPessoas = listaPessoa.Count;
+            
             var cont = 0;
-            var controle = listaPessoa.Count;
-
+            //Inicia Laço: Quadro por Quadro do Mês selecionado            
             foreach (var quadro in listaQuadro){
+                //Lista registros da tabela PessoaQuadro do Quadro atual no laço:
                 var listaPessoaQuadro = await _context.PessoaQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
-                foreach (var pessoaQuadro in listaPessoaQuadro){                      
+                //Laço com lista de registros da tabela PessoaQuadro:                
+                foreach (var pessoaQuadro in listaPessoaQuadro){    
+                    /*Atualiza registro da tabela PessoaQuadro com informaçõa da Pessoa, a partir da lista total de 
+                    Pessoas. Quando toda a lista de pessoas é percorrida, o registro volta para o início, fazendo um
+                    loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
+                    que funciona como contador da lista, e a variável 'totalPessoas', que faz o controle da quantidade
+                    de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */
                     pessoaQuadro.PessoaId = listaPessoa[cont].Id;                    
                     _context.Update(pessoaQuadro);
                     await _context.SaveChangesAsync();
 
                     cont = cont + 1;
-                    if (cont >= controle)
+                    //se 'cont' tiver o número total de pessoas, ''cont volta para o valor zero.
+                    if (cont >= totalPessoas)
                         cont = 0;
                 }
                
