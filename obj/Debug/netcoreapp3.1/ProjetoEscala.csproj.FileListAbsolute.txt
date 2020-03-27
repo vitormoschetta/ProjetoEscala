@@ -121,3 +121,4 @@ C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Create.cshtml.
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Delete.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Edit.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Index.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Pessoa\_ListaLocal.cshtml.g.cs

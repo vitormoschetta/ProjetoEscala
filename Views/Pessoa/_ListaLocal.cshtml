@@ -1,0 +1,21 @@
+<div class="form-group">
+    <label class="col-md-2 control-label">Locais</label>
+    <div class="col-md-10">
+        @foreach (var local in ViewBag.ListaLocal)
+        {
+            <input type="checkbox" id="@local.Id" value="@local.Id" onclick="AtualizarLocal(this.value)"/>
+            <label>@local.Nome</label>         
+
+            @foreach (var pessoaLocal in ViewBag.ListaPessoaLocal)   
+            {
+                if (pessoaLocal.LocalId == local.Id){
+                    <script>
+                        document.getElementById(@local.Id).checked = true;
+                    </script>
+                }
+            }      
+        }       
+
+            
+    </div>
+</div>         

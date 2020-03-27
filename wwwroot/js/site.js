@@ -22,3 +22,34 @@ function CheckedDestaque() {
         }
     }
 }
+
+
+
+function AtualizarLocal(local) {  
+
+    var pessoa = document.getElementById("Id").value;
+        
+    if (document.getElementById(local).checked == true){ 
+
+        var url = $("#adicionar-local").data("url");  
+        
+        $.post(url, {localId: local, pessoaId: pessoa}, function (data)
+        {                   
+            $("#listaLocal").empty();
+            $("#listaLocal").html(data);
+        }); 
+        alert("Local Adicionado!");
+    }
+    else {
+        var url = $("#retirar-local").data("url");         
+
+        $.post(url, {localId: local, pessoaId: pessoa}, function (data)
+        {       
+            
+            $("#listaLocal").empty();
+            $("#listaLocal").html(data);
+        }); 
+        alert("Local Removido!");
+    }    
+
+}

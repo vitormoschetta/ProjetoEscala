@@ -15,9 +15,7 @@
             </th>
             <th>                
             </th>
-            <td>
-                Locais
-            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -30,13 +28,6 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-            <td>         
-                @foreach (var local in ViewBag.ListaLocal)
-                {
-                    <input type="checkbox" id="@local.Nome" value="@local.Id"/>
-                    <label>@local.Nome</label>
-                }       
             </td>
         </tr>
     }
