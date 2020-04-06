@@ -1,8 +1,5 @@
 @model ProjetoEscala.Models.Pessoa
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
 <form asp-action="Edit">
     <div class="form-horizontal">
@@ -19,6 +16,16 @@
             </div>
         </div> 
 
+        <div class="form-group">
+            <label asp-for="Ativo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Ativo" class="form-control" asp-items="Html.GetEnumSelectList<EAtivo>()">                    
+                </select>
+                <span asp-validation-for="Ativo" class="text-danger"></span>
+            </div>
+        </div> 
+
+        <!--Lista de locais para selecionar onde a pessoa pode estar escalada-->
         <div id="listaLocal">
             @await Html.PartialAsync("_ListaLocal")
         </div>

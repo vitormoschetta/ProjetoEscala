@@ -5,14 +5,14 @@
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <input type="hidden" id="Id" name="Id" value="@ViewBag.PessoaQuadro.Id"/>
+        <input type="hidden" id="Id" name="Id" value="@ViewBag.ItemQuadro.Id"/>
 
        <div class="form-group">
             <label class="col-md-2 control-label">Pessoa</label>
             <div class="col-md-3">
                 <select id="PessoaId" name="PessoaId" class="form-control">                        
                     @foreach (var item in ViewBag.Pessoa){  
-                        if(item.Id == ViewBag.PessoaQuadro.PessoaId){
+                        if(item.Id == ViewBag.ItemQuadro.PessoaId){
                             <option value="@item.Id" selected>@item.Nome</option>
                         }  
                         else{
@@ -28,7 +28,7 @@
             <div class="col-md-3">
                 <select id="LocalId" name="LocalId" class="form-control">
                     @foreach (var item in ViewBag.Local){     
-                        if (item.Id == ViewBag.PessoaQuadro.LocalId){
+                        if (item.Id == ViewBag.ItemQuadro.LocalId){
                             <option value="@item.Id" selected>@item.Nome</option>
                         }
                         else{
@@ -39,7 +39,7 @@
             </div>
         </div>    
 
-        <input type="hidden" id="QuadroId" name="QuadroId" value="@ViewBag.PessoaQuadro.QuadroId" />          
+        <input type="hidden" id="QuadroId" name="QuadroId" value="@ViewBag.ItemQuadro.QuadroId" />          
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

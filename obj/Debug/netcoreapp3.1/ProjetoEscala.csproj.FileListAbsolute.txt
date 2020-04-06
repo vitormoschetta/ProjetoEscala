@@ -43,7 +43,6 @@ C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\SQLitePCLRaw.core.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\SQLitePCLRaw.provider.dynamic_cdecl.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
@@ -65,7 +64,6 @@ C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\GitHub\ProjetoEscala\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.csprojAssemblyReference.cache
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\staticwebassets\ProjetoEscala.StaticWebAssets.Manifest.cache
@@ -91,11 +89,6 @@ C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Local\Create.cshtml.
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Local\Delete.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Local\Edit.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Local\Index.cshtml.g.cs
-C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\PessoaQuadro\Create.cshtml.g.cs
-C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\PessoaQuadro\Delete.cshtml.g.cs
-C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\PessoaQuadro\Edit.cshtml.g.cs
-C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\PessoaQuadro\LocalGeral.cshtml.g.cs
-C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\PessoaQuadro\teste.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Pessoa\Create.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Pessoa\Delete.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Pessoa\Edit.cshtml.g.cs
@@ -122,3 +115,9 @@ C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Delete.cshtml.
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Edit.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Aviso\Index.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Pessoa\_ListaLocal.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.csproj.CoreCompileInputs.cache
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\ProjetoEscala.genruntimeconfig.cache
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Create.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Delete.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Edit.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\LocalGeral.cshtml.g.cs

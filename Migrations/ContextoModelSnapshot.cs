@@ -64,6 +64,28 @@ namespace ProjetoEscala.Migrations
                     b.ToTable("Evento");
                 });
 
+            modelBuilder.Entity("ProjetoEscala.Models.ItemQuadro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PessoaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuadroId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuadroId");
+
+                    b.ToTable("ItemQuadro");
+                });
+
             modelBuilder.Entity("ProjetoEscala.Models.Local", b =>
                 {
                     b.Property<int>("Id")
@@ -83,6 +105,10 @@ namespace ProjetoEscala.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Ativo")
+                        .IsRequired()
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -111,28 +137,6 @@ namespace ProjetoEscala.Migrations
                     b.HasIndex("PessoaId");
 
                     b.ToTable("PessoaLocal");
-                });
-
-            modelBuilder.Entity("ProjetoEscala.Models.PessoaQuadro", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("LocalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PessoaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuadroId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuadroId");
-
-                    b.ToTable("PessoaQuadro");
                 });
 
             modelBuilder.Entity("ProjetoEscala.Models.Quadro", b =>
@@ -171,6 +175,15 @@ namespace ProjetoEscala.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProjetoEscala.Models.ItemQuadro", b =>
+                {
+                    b.HasOne("ProjetoEscala.Models.Quadro", null)
+                        .WithMany("ListaItemQuadro")
+                        .HasForeignKey("QuadroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ProjetoEscala.Models.PessoaLocal", b =>
                 {
                     b.HasOne("ProjetoEscala.Models.Local", "Local")
@@ -182,15 +195,6 @@ namespace ProjetoEscala.Migrations
                     b.HasOne("ProjetoEscala.Models.Pessoa", "Pessoa")
                         .WithMany()
                         .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProjetoEscala.Models.PessoaQuadro", b =>
-                {
-                    b.HasOne("ProjetoEscala.Models.Quadro", null)
-                        .WithMany("ListaPessoaQuadro")
-                        .HasForeignKey("QuadroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

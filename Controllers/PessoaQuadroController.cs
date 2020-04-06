@@ -14,11 +14,11 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ProjetoEscala.Controllers
 {
-    public class PessoaQuadroController: Controller
+    public class ItemQuadroController: Controller
     {
         private readonly Contexto _context;
 
-        public PessoaQuadroController(Contexto context) 
+        public ItemQuadroController(Contexto context) 
         {
             _context = context;    
         }
@@ -33,15 +33,15 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateSave([Bind("Id,PessoaId,LocalId,QuadroId")] PessoaQuadro pessoaQuadro)
+        public async Task<IActionResult> CreateSave([Bind("Id,PessoaId,LocalId,QuadroId")] ItemQuadro itemQuadro)
         {
             if (ModelState.IsValid){
-                _context.Add(pessoaQuadro);
+                _context.Add(itemQuadro);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Quadro");
             }
-            return View(pessoaQuadro);
+            return View(itemQuadro);
         }
 
 
@@ -50,9 +50,9 @@ namespace ProjetoEscala.Controllers
             if (id == null)
                 return NotFound();
 
-            ViewBag.PessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (ViewBag.PessoaQuadro == null)            
+            if (ViewBag.ItemQuadro == null)            
                 return NotFound();
             
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();           
@@ -64,25 +64,25 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int Id, [Bind("Id,PessoaId,LocalId,QuadroId")] PessoaQuadro pessoaQuadro)
+        public async Task<IActionResult> Edit(int Id, [Bind("Id,PessoaId,LocalId,QuadroId")] ItemQuadro itemQuadro)
         {
-            if (Id != pessoaQuadro.Id)
+            if (Id != itemQuadro.Id)
                 return NotFound();            
 
             if (ModelState.IsValid){
                 try{
-                    _context.Update(pessoaQuadro);
+                    _context.Update(itemQuadro);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException){
-                    if (!PessoaQuadroExists(pessoaQuadro.Id))
+                    if (!ItemQuadroExists(itemQuadro.Id))
                         return NotFound();
                     else
                         throw;                    
                 }
                 return RedirectToAction("Index", "Quadro");
             }
-            return View(pessoaQuadro);
+            return View(itemQuadro);
         }
 
 
@@ -91,27 +91,27 @@ namespace ProjetoEscala.Controllers
             if (id == null)            
                 return NotFound();            
 
-            var pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(m => m.Id == id);
-            if (pessoaQuadro == null)            
+            var ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(m => m.Id == id);
+            if (ItemQuadro == null)            
                 return NotFound();            
 
-            return View(pessoaQuadro);
+            return View(ItemQuadro);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(m => m.Id == id);
-            _context.PessoaQuadro.Remove(pessoaQuadro);
+            var ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(m => m.Id == id);
+            _context.ItemQuadro.Remove(ItemQuadro);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Quadro");
         }
 
-        private bool PessoaQuadroExists(int id)
+        private bool ItemQuadroExists(int id)
         {
-            return _context.PessoaQuadro.Any(e => e.Id == id);
+            return _context.ItemQuadro.Any(e => e.Id == id);
         }
 
 
@@ -131,11 +131,11 @@ namespace ProjetoEscala.Controllers
                 .Where(q => q.EscalaId == escala).ToListAsync();            
 
             foreach (var item in listaQuadro){
-                PessoaQuadro pessoaQuadro = new PessoaQuadro();
-                pessoaQuadro.QuadroId = item.Id;
-                pessoaQuadro.LocalId = LocalId;
+                ItemQuadro ItemQuadro = new ItemQuadro();
+                ItemQuadro.QuadroId = item.Id;
+                ItemQuadro.LocalId = LocalId;
 
-                _context.Add(pessoaQuadro);
+                _context.Add(ItemQuadro);
                 await _context.SaveChangesAsync();
             }
             
@@ -153,16 +153,16 @@ namespace ProjetoEscala.Controllers
                 .Where(q => q.EscalaId == escala).ToListAsync();
 
             //var vinculo = _context.Quadro.FromSqlRaw("select top 1 id from quadro where escalaId = " + escala);            
-            //var listaPessoaQuadro = await _context.PessoaQuadro.Where(p => p.QuadroId == vinculo.Id).ToListAsync();   
-            var listaPessoaQuadro = await _context.PessoaQuadro.ToListAsync();
+            //var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == vinculo.Id).ToListAsync();   
+            var listaItemQuadro = await _context.ItemQuadro.ToListAsync();
 
-            var pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(p => p.Id == 10);
+            var ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(p => p.Id == 10);
                   
             foreach (var item in listaQuadro){
-                foreach (var item02 in listaPessoaQuadro){
+                foreach (var item02 in listaItemQuadro){
                     if (item.Id == item02.QuadroId){                        
-                        pessoaQuadro = await _context.PessoaQuadro.SingleOrDefaultAsync(p => p.QuadroId == item.Id);
-                        _context.PessoaQuadro.Remove(pessoaQuadro);
+                        ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(p => p.QuadroId == item.Id);
+                        _context.ItemQuadro.Remove(ItemQuadro);
                         await _context.SaveChangesAsync();
                     }
                 }
@@ -189,23 +189,25 @@ namespace ProjetoEscala.Controllers
             var cont = 0;
             //Inicia Laço: Quadro por Quadro do Mês selecionado            
             foreach (var quadro in listaQuadro){
-                //Lista registros da tabela PessoaQuadro do Quadro atual no laço:
-                var listaPessoaQuadro = await _context.PessoaQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
-                //Laço com lista de registros da tabela PessoaQuadro:                
-                foreach (var pessoaQuadro in listaPessoaQuadro){    
-                    /*Atualiza registro da tabela PessoaQuadro com informaçõa da Pessoa, a partir da lista total de 
+                //Lista registros da tabela ItemQuadro do Quadro atual no laço:
+                var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
+                //Laço com lista de registros da tabela ItemQuadro:                
+                foreach (var ItemQuadro in listaItemQuadro){    
+                    /*Atualiza registro da tabela ItemQuadro com informaçõa da Pessoa, a partir da lista total de 
                     Pessoas. Quando toda a lista de pessoas é percorrida, o registro volta para o início, fazendo um
                     loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
                     que funciona como contador da lista, e a variável 'totalPessoas', que faz o controle da quantidade
                     de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */
-                    pessoaQuadro.PessoaId = listaPessoa[cont].Id;                    
-                    _context.Update(pessoaQuadro);
+                    ItemQuadro.PessoaId = listaPessoa[cont].Id;                    
+                    _context.Update(ItemQuadro);
                     await _context.SaveChangesAsync();
 
                     cont = cont + 1;
-                    //se 'cont' tiver o número total de pessoas, ''cont volta para o valor zero.
+                    //se 'cont' tiver o número total de pessoas, 'cont' volta para o valor zero.
                     if (cont >= totalPessoas)
                         cont = 0;
+
+                    //cont = cont >= totalPessoas ? 0 : cont + 1;
                 }
                
             }            

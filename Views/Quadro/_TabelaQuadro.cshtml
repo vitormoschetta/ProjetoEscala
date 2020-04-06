@@ -34,7 +34,7 @@
                 <a asp-action="Create" asp-controller="PessoaQuadro" asp-route-id="@item.Id">+ Manual</a> 
             </td>
         </tr>        
-        @foreach (var itemPessoaQuadro in ViewBag.PessoaQuadro) 
+        @foreach (var itemPessoaQuadro in ViewBag.ItemQuadro) 
         {     
             if (itemPessoaQuadro.QuadroId == item.Id){
                 

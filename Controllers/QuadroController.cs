@@ -33,7 +33,7 @@ namespace ProjetoEscala.Controllers
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
             ViewBag.Escala = await _context.Escala.ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();   
-            ViewBag.PessoaQuadro = await _context.PessoaQuadro.ToListAsync(); 
+            ViewBag.ItemQuadro = await _context.ItemQuadro.ToListAsync(); 
             ViewBag.ListaMensagem = await _context.Aviso
                 .Where(a => a.EscalaId == escalaId)
                 .ToListAsync();              
@@ -60,7 +60,7 @@ namespace ProjetoEscala.Controllers
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
             ViewBag.Escala = await _context.Escala.ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();             
-            ViewBag.PessoaQuadro = await _context.PessoaQuadro.ToListAsync(); 
+            ViewBag.ItemQuadro = await _context.ItemQuadro.ToListAsync(); 
     
             var escalaId = HttpContext.Session.GetInt32("Escala_Mes");  
 
@@ -86,7 +86,7 @@ namespace ProjetoEscala.Controllers
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
             ViewBag.Escala = await _context.Escala.ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();   
-            ViewBag.PessoaQuadro = await _context.PessoaQuadro.ToListAsync();           
+            ViewBag.ItemQuadro = await _context.ItemQuadro.ToListAsync();           
 
             if(escalaId != 0){
                 HttpContext.Session.SetInt32("Escala_Mes", escalaId);  

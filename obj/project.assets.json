@@ -551,7 +551,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Pomelo.EntityFrameworkCore.MySql/3.1.0": {
+      "Pomelo.EntityFrameworkCore.MySql/3.1.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "3.1.0",
@@ -2527,16 +2527,16 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "Pomelo.EntityFrameworkCore.MySql/3.1.0": {
-      "sha512": "cm43LBLO2/RWn4fniC/JFpqLy6deHbFK7oBOryzAkjl67UJotmQYXf4I+cjCFBLEApdxtLboBovZ+ckbGYZzjQ==",
+    "Pomelo.EntityFrameworkCore.MySql/3.1.1": {
+      "sha512": "DYMsaJe/lKoaPGjB0ACnP+h5FeaJC+07f83FewBulkqfkUvc7m97PECX0OUHSTT+qEF0EOmJ7HQR0dltSCDyPQ==",
       "type": "package",
-      "path": "pomelo.entityframeworkcore.mysql/3.1.0",
+      "path": "pomelo.entityframeworkcore.mysql/3.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
         "lib/netstandard2.0/Pomelo.EntityFrameworkCore.MySql.dll",
-        "pomelo.entityframeworkcore.mysql.3.1.0.nupkg.sha512",
+        "pomelo.entityframeworkcore.mysql.3.1.1.nupkg.sha512",
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
@@ -5954,11 +5954,11 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.1",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.2",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.1",
-      "Pomelo.EntityFrameworkCore.MySql >= 3.1.0"
+      "Pomelo.EntityFrameworkCore.MySql >= 3.1.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sempron\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5966,11 +5966,11 @@
       "projectUniqueName": "C:\\GitHub\\ProjetoEscala\\ProjetoEscala.csproj",
       "projectName": "ProjetoEscala",
       "projectPath": "C:\\GitHub\\ProjetoEscala\\ProjetoEscala.csproj",
-      "packagesPath": "C:\\Users\\Sempron\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
       "outputPath": "C:\\GitHub\\ProjetoEscala\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Sempron\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6022,7 +6022,7 @@
           },
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "[3.1.1, )"
           }
         },
         "imports": [
@@ -6043,7 +6043,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

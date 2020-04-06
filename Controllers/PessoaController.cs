@@ -94,7 +94,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Pessoa pessoa)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Ativo")] Pessoa pessoa)
         {
             if (id != pessoa.Id)
                 return NotFound();            

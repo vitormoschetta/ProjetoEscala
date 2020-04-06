@@ -1,6 +1,6 @@
 namespace ProjetoEscala.Models
 {
-    public class PessoaQuadro
+    public class ItemQuadro
     {
         public int Id {get; set;}
 

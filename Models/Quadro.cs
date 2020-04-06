@@ -13,7 +13,7 @@ namespace ProjetoEscala.Models
         public int EscalaId {get; set;}
         public Escala Escala {get; set;}
 
-        public ICollection<PessoaQuadro> ListaPessoaQuadro {get; set;}
+        public ICollection<ItemQuadro> ListaItemQuadro {get; set;}
 
         public DateTime Data {get; set;}        
         
