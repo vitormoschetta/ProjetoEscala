@@ -31,31 +31,31 @@
             <td class="col-sm-2">
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="Create" asp-controller="PessoaQuadro" asp-route-id="@item.Id">+ Manual</a> 
+                <a asp-action="Create" asp-controller="ItemQuadro" asp-route-id="@item.Id">+ Manual</a> 
             </td>
         </tr>        
-        @foreach (var itemPessoaQuadro in ViewBag.ItemQuadro) 
+        @foreach (var itemItemQuadro in ViewBag.ItemQuadro) 
         {     
-            if (itemPessoaQuadro.QuadroId == item.Id){
+            if (itemItemQuadro.QuadroId == item.Id){
                 
                 <tr>
                     <td>
                         @foreach (var itemLocal in ViewBag.Local){
-                            if(itemLocal.Id == itemPessoaQuadro.LocalId){
+                            if(itemLocal.Id == itemItemQuadro.LocalId){
                                 @itemLocal.Nome
                             }
                         }
                     </td>
                     <td >
                         @foreach (var itemPessoa in ViewBag.Pessoa){
-                            if(itemPessoa.Id == itemPessoaQuadro.PessoaId){
+                            if(itemPessoa.Id == itemItemQuadro.PessoaId){
                                 @itemPessoa.Nome                                
                             }
                         }
                     </td>
                     <td >
-                        <a asp-action="Edit" asp-controller="PessoaQuadro" asp-route-id="@itemPessoaQuadro.Id">Edit</a> |
-                        <a asp-action="Delete" asp-controller="PessoaQuadro" asp-route-id="@itemPessoaQuadro.Id">Delete</a>                             
+                        <a asp-action="Edit" asp-controller="ItemQuadro" asp-route-id="@itemItemQuadro.Id">Edit</a> |
+                        <a asp-action="Delete" asp-controller="ItemQuadro" asp-route-id="@itemItemQuadro.Id">Delete</a>                             
                     </td>
                 </tr>
             }

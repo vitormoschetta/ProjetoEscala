@@ -198,9 +198,19 @@ namespace ProjetoEscala.Controllers
                     loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
                     que funciona como contador da lista, e a variável 'totalPessoas', que faz o controle da quantidade
                     de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */
-                    ItemQuadro.PessoaId = listaPessoa[cont].Id;                    
-                    _context.Update(ItemQuadro);
-                    await _context.SaveChangesAsync();
+
+                    //Pega a lista de LOCAL que a pessoa atual da listaPessoa está configurada a ser escalada
+                    var listaPessoaLocal = await _context.PessoaLocal.Where(p => p.PessoaId == listaPessoa[cont].Id).ToListAsync();
+                    
+                    //Verifica se na lista de LOCAL configurada para a pessoal atual da listaPessoa consta o Local do ItemQuadro Atual:
+                    foreach (var pessoaLocal in listaPessoaLocal){
+                        if (pessoaLocal.LocalId == ItemQuadro.LocalId){
+                            //Se "Sim" atualiza itemQuadro com a pessoa atual da listaPessoa:
+                            ItemQuadro.PessoaId = listaPessoa[cont].Id; 
+                            _context.Update(ItemQuadro);
+                            await _context.SaveChangesAsync();
+                        }
+                    }                                                           
 
                     cont = cont + 1;
                     //se 'cont' tiver o número total de pessoas, 'cont' volta para o valor zero.
@@ -215,6 +225,26 @@ namespace ProjetoEscala.Controllers
             return RedirectToAction("Index", "Quadro");            
            
         }
+
+
+        public async Task<IActionResult> LimparEscala()
+        {
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");
+
+            var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();
+
+            foreach (var quadro in listaQuadro){
+                var listaItemQuadro = await _context.ItemQuadro.Where(i => i.QuadroId == quadro.Id).ToListAsync();
+
+                foreach (var itemQuadro in listaItemQuadro){
+                    _context.ItemQuadro.Remove(itemQuadro);
+                    await _context.SaveChangesAsync();
+                }
+            }
+                    
+            return RedirectToAction("Index", "Quadro");
+        }
+        
 
 
     }
