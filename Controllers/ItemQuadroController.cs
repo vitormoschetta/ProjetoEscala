@@ -180,19 +180,18 @@ namespace ProjetoEscala.Controllers
                       
             // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
             var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();   
-
             // lista todas as pessoas
             var listaPessoa = await _context.Pessoa.ToListAsync();  
             //Pega nr total de pessoas:                               
-            var totalPessoas = listaPessoa.Count;
+            int totalPessoas = listaPessoa.Count;
             
-            var cont = 0;
+            int cont = 0;
             //Inicia Laço: Quadro por Quadro do Mês selecionado            
             foreach (var quadro in listaQuadro){
                 //Lista registros da tabela ItemQuadro do Quadro atual no laço:
                 var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
                 //Laço com lista de registros da tabela ItemQuadro:                
-                foreach (var ItemQuadro in listaItemQuadro){    
+                foreach (var itemQuadro in listaItemQuadro){    
                     /*Atualiza registro da tabela ItemQuadro com informaçõa da Pessoa, a partir da lista total de 
                     Pessoas. Quando toda a lista de pessoas é percorrida, o registro volta para o início, fazendo um
                     loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
@@ -203,14 +202,21 @@ namespace ProjetoEscala.Controllers
                     var listaPessoaLocal = await _context.PessoaLocal.Where(p => p.PessoaId == listaPessoa[cont].Id).ToListAsync();
                     
                     //Verifica se na lista de LOCAL configurada para a pessoal atual da listaPessoa consta o Local do ItemQuadro Atual:
-                    foreach (var pessoaLocal in listaPessoaLocal){
-                        if (pessoaLocal.LocalId == ItemQuadro.LocalId){
+                    foreach (var pessoaLocal in listaPessoaLocal){                        
+                        if (pessoaLocal.LocalId == itemQuadro.LocalId){
                             //Se "Sim" atualiza itemQuadro com a pessoa atual da listaPessoa:
-                            ItemQuadro.PessoaId = listaPessoa[cont].Id; 
-                            _context.Update(ItemQuadro);
+                            itemQuadro.PessoaId = listaPessoa[cont].Id; 
+                            _context.Update(itemQuadro);
                             await _context.SaveChangesAsync();
-                        }
-                    }                                                           
+                        }                      
+                    }                     
+
+                    /*se a pessoa atual da listaPessoa não pode ser escalada no local do itemQuadro,
+                    proceder novo loop com todas as pessoas até encontrar alguém:               */
+                    if (itemQuadro.PessoaId == 0){      
+                        
+                    }     
+
 
                     cont = cont + 1;
                     //se 'cont' tiver o número total de pessoas, 'cont' volta para o valor zero.
@@ -225,6 +231,7 @@ namespace ProjetoEscala.Controllers
             return RedirectToAction("Index", "Quadro");            
            
         }
+
 
 
         public async Task<IActionResult> LimparEscala()
