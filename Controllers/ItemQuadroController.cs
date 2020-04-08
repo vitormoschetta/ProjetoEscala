@@ -144,35 +144,7 @@ namespace ProjetoEscala.Controllers
            
         }
 
-        [HttpPost]
-        public async Task<IActionResult> LimparLocal()
-        {            
-            var escala = HttpContext.Session.GetInt32("Escala_Mes");      
-                      
-            var listaQuadro = await _context.Quadro
-                .Where(q => q.EscalaId == escala).ToListAsync();
-
-            //var vinculo = _context.Quadro.FromSqlRaw("select top 1 id from quadro where escalaId = " + escala);            
-            //var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == vinculo.Id).ToListAsync();   
-            var listaItemQuadro = await _context.ItemQuadro.ToListAsync();
-
-            var ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(p => p.Id == 10);
-                  
-            foreach (var item in listaQuadro){
-                foreach (var item02 in listaItemQuadro){
-                    if (item.Id == item02.QuadroId){                        
-                        ItemQuadro = await _context.ItemQuadro.SingleOrDefaultAsync(p => p.QuadroId == item.Id);
-                        _context.ItemQuadro.Remove(ItemQuadro);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-            }            
-     
-            return RedirectToAction("Index", "Quadro");            
-           
-        }
-
-
+       
         
         public async Task<IActionResult> GerarEscala()
         {            
@@ -253,15 +225,14 @@ namespace ProjetoEscala.Controllers
 
 
 
-        public async Task<IActionResult> LimparEscala()
+        public async Task<IActionResult> LimparLocal()
         {
             var escala = HttpContext.Session.GetInt32("Escala_Mes");
-
-            var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escala).ToListAsync();
 
             foreach (var quadro in listaQuadro){
                 var listaItemQuadro = await _context.ItemQuadro.Where(i => i.QuadroId == quadro.Id).ToListAsync();
-
                 foreach (var itemQuadro in listaItemQuadro){
                     _context.ItemQuadro.Remove(itemQuadro);
                     await _context.SaveChangesAsync();
@@ -271,6 +242,20 @@ namespace ProjetoEscala.Controllers
             return RedirectToAction("Index", "Quadro");
         }
         
+
+        public async Task<IActionResult> LimparEscala()
+        {
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");  
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escala).ToListAsync();
+
+            foreach (var quadro in listaQuadro){               
+                _context.Quadro.Remove(quadro);
+                await _context.SaveChangesAsync();
+            }                 
+            return RedirectToAction("Index", "Quadro");     
+        }
+
 
 
     }
