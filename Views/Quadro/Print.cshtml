@@ -8,7 +8,7 @@
 </div>
 
 <div style="text-align:center; background-color:#5c9ded; color:white; font-weight:bold; border-radius:10px;" >
-    <h2>ESCALA DE OFICIAIS</h2>
+    <h2>ESCALA</h2>
 </div>
 
 
@@ -22,13 +22,13 @@
                 if (item.Destaque != 2)
                 {
                     //Inicio Quadro
-                    <div style="float:left;" class="col-sm-4 pl-5 pb-5">
+                    <div style="float:left;" class="col-sm-8 pl-5 pb-5">
          
                             <div class="row" style="background-color:#5c9ded; color:white; font-weight:bold; border-radius:10px;">
-                                <div class="col-6">
+                                <div class="col-3">
                                     @item.Data.ToString("dd/MM/yyyy")
                                 </div>
-                                <div class="col-3">
+                                <div class="col-7">
                                     @foreach (var itemEvento in ViewBag.Evento){
                                         if (itemEvento.Id == item.EventoId){
                                             @itemEvento.Nome
@@ -46,7 +46,7 @@
                             {     
                                 if (itemPessoaQuadro.QuadroId == item.Id){
                                     <div class="row">
-                                        <div class="col-7">
+                                        <div class="col-6" style="text-align: right;">
                                             @foreach (var itemLocal in ViewBag.Local){
                                                 if(itemLocal.Id == itemPessoaQuadro.LocalId){
                                                     @itemLocal.Nome

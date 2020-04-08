@@ -72,8 +72,7 @@ namespace ProjetoEscala.Controllers
                     .ToListAsync();
             }
             else{                
-                ViewBag.ListaQuadro = await _context.Quadro                    
-                .ToListAsync();
+                ViewBag.ListaQuadro = await _context.Quadro.ToListAsync();
             }                                
             
             return View();
@@ -109,7 +108,8 @@ namespace ProjetoEscala.Controllers
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Escala = await _context.Escala.ToListAsync();
+            ViewBag.Escala = await _context.Escala
+                .FromSqlRaw("select * from ESCALA order by id desc limit 5").ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();
 
             return View();
@@ -124,7 +124,41 @@ namespace ProjetoEscala.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
             
+        }        
+
+
+        public async Task<IActionResult> CreateTodosDias()
+        {            
+            ViewBag.Escala = await _context.Escala
+                .FromSqlRaw("select * from ESCALA order by id desc limit 5").ToListAsync();
+            ViewBag.Evento = await _context.Evento.ToListAsync();
+
+            return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTodosDias(int EscalaId, int EventoId, DateTime dataInicial, DateTime dataFinal)
+        {          
+            int quantidadeDias = (dataFinal).Subtract(dataInicial).Days;
+
+            for (int i = 0; i <= quantidadeDias; i++)
+            {
+                Quadro quadro = new Quadro();
+                quadro.Data = dataInicial;
+                quadro.EscalaId = EscalaId;
+                quadro.EventoId = EventoId;
+                _context.Add(quadro);
+                await _context.SaveChangesAsync();
+                dataInicial = dataInicial.AddDays(1);
+            }
+        
+            return RedirectToAction("Index");
+        }
+
+
+        
 
 
         public async Task<IActionResult> Edit(int? id)

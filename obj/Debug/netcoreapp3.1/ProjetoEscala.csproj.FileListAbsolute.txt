@@ -121,3 +121,4 @@ C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Create.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Delete.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\Edit.cshtml.g.cs
 C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\ItemQuadro\LocalGeral.cshtml.g.cs
+C:\GitHub\ProjetoEscala\obj\Debug\netcoreapp3.1\Razor\Views\Quadro\CreateTodosDias.cshtml.g.cs
