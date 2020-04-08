@@ -105,8 +105,8 @@ namespace ProjetoEscala.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<char>("Ativo")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Ativo")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");

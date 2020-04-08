@@ -58,7 +58,8 @@ namespace ProjetoEscala.Controllers
         {                        
             ViewBag.Local = await _context.Local.ToListAsync();
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
-            ViewBag.Escala = await _context.Escala.ToListAsync();
+            ViewBag.Escala = await _context.Escala
+                .FromSqlRaw("select * from ESCALA order by id desc limit 5").ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();             
             ViewBag.ItemQuadro = await _context.ItemQuadro.ToListAsync(); 
     

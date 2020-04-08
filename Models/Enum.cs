@@ -8,7 +8,7 @@ namespace ProjetoEscala.Models
 
     public enum EAtivo
     {
-        Sim = 'S',
-        Nao = 'N'
+        Nao = 1,
+        Sim = 2
     }
 }

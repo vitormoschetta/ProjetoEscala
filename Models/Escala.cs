@@ -4,5 +4,7 @@ namespace ProjetoEscala.Models
     {
         public int Id {get; set;}
         public string Mes {get; set;}
+
+        
     }
 }

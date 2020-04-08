@@ -64,7 +64,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Pessoa pessoa)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Ativo")] Pessoa pessoa)
         {
             if (ModelState.IsValid){
                 _context.Add(pessoa);
@@ -84,9 +84,9 @@ namespace ProjetoEscala.Controllers
             if (pessoa == null)            
                 return NotFound();
 
-            ViewBag.ListaLocal = await _context.Local.ToListAsync();
-            ViewBag.ListaPessoaLocal = await _context.PessoaLocal
-                                        .Where(p => p.PessoaId == pessoa.Id).ToListAsync();
+            //ViewBag.ListaLocal = await _context.Local.ToListAsync();
+            //ViewBag.ListaPessoaLocal = await _context.PessoaLocal
+                                        //.Where(p => p.PessoaId == pessoa.Id).ToListAsync();
             
             return View(pessoa);
         }
