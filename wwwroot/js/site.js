@@ -55,7 +55,7 @@ function AtualizarLocal(local) {
 }
 
 
-
+/*
 function LimparTudoAJAX() {
 
     var escala = document.getElementById("escala-id").value;
@@ -72,3 +72,4 @@ function LimparTudoAJAX() {
         $("#tabelaQuadro").empty();
     }); 
 }
+*/
