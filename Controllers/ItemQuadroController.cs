@@ -26,7 +26,7 @@ namespace ProjetoEscala.Controllers
         public async Task<IActionResult> Create(int Id)
         {
             ViewBag.QuadroId = Id;
-            ViewBag.Pessoa = await _context.Pessoa.ToListAsync();           
+            ViewBag.Pessoa = await _context.Pessoa.Where(p => p.Ativo == 2).ToListAsync();       
             ViewBag.Local = await _context.Local.ToListAsync();           
             return View();
         }
@@ -152,7 +152,7 @@ namespace ProjetoEscala.Controllers
             // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
             var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();   
             // lista todas as pessoas
-            var listaPessoa = await _context.Pessoa.ToListAsync();  
+            var listaPessoa = await _context.Pessoa.Where(p => p.Ativo == 2).ToListAsync();  
             //Pega nr total de pessoas:                               
             int totalPessoas = listaPessoa.Count;
             
