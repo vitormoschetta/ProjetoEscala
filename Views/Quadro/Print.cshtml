@@ -16,13 +16,13 @@
     <div class="row">
 
         <!-- parte padrao -->
-        <div class="col-9">
+        <div>
             @foreach (var item in ViewBag.ListaQuadro) 
             {
                 if (item.Destaque != 2)
                 {
                     //Inicio Quadro
-                    <div style="float:left;" class="col-sm-8 pl-5 pb-5">
+                    <div style="float:left;" class="col-sm-5 pl-5 pb-5">
          
                             <div class="row" style="background-color:#5c9ded; color:white; font-weight:bold; border-radius:10px;">
                                 <div class="col-3">
@@ -73,7 +73,8 @@
 
         
         <!-- parte destaque -->
-        <div class="col-3">
+        <!--
+        <div class="col-1">
 
             @foreach (var item in ViewBag.ListaQuadro) 
             {
@@ -128,6 +129,7 @@
             }
         </div>    
     </div>
+    -->
 
     <div class="row">
 
