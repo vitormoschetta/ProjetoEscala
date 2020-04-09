@@ -148,6 +148,45 @@ namespace ProjetoEscala.Controllers
         
         public async Task<IActionResult> GerarEscala()
         {            
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");                            
+            // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
+            var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();   
+            // lista todas as pessoas
+            var listaPessoa = await _context.Pessoa.ToListAsync();  
+            //Pega nr total de pessoas:                               
+            int totalPessoas = listaPessoa.Count;
+            
+            int indicePessoas = 0;
+            //Inicia Laço: Quadro por Quadro do Mês selecionado            
+            foreach (var quadro in listaQuadro){
+                //Lista registros da tabela ItemQuadro do Quadro atual no laço:
+                var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
+                //Laço com lista de registros da tabela ItemQuadro:                
+                foreach (var itemQuadro in listaItemQuadro){    
+                    /*Atualiza registro da tabela ItemQuadro com informaçõa da Pessoa, a partir da lista total de 
+                    Pessoas. Quando toda a lista de pessoas é percorrida, o registro volta para o início, fazendo um
+                    loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
+                    que funciona como contador da lista, e a variável 'totalPessoas', que faz o controle da quantidade
+                    de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */                    
+
+                    itemQuadro.PessoaId = listaPessoa[indicePessoas].Id;                    
+                    _context.Update(itemQuadro);
+                    await _context.SaveChangesAsync();             
+
+                    indicePessoas++;
+                    //se 'cont' tiver o número total de pessoas, 'cont' volta para o valor zero.
+                    if (indicePessoas >= totalPessoas)
+                        indicePessoas = 0;
+
+                }       
+            }                                         
+            return RedirectToAction("Index", "Quadro");                       
+        }
+
+
+        /*
+        public async Task<IActionResult> GerarEscala()
+        {            
             var escala = HttpContext.Session.GetInt32("Escala_Mes");      
                       
             // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
@@ -172,6 +211,7 @@ namespace ProjetoEscala.Controllers
                     de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */                    
 
                     //Pega a lista de LOCAL que a pessoa atual da listaPessoa está configurada a ser escalada
+                    /*
                     var listaPessoaLocal = await _context.PessoaLocal.Where(p => p.PessoaId == listaPessoa[indicePessoas].Id).ToListAsync();
                     
                     //Verifica se na lista de LOCAL configurada para a pessoal atual da listaPessoa consta o Local do ItemQuadro Atual:
@@ -185,6 +225,7 @@ namespace ProjetoEscala.Controllers
                     }                     
                     /*se a pessoa atual da listaPessoa não pode ser escalada no local do itemQuadro,
                     proceder novo loop com todas as pessoas até encontrar alguém:               */
+                    /*
                     if (itemQuadro.PessoaId == 0){      
                         //var indicePessoas02 = indicePessoas + 1;
                         for (int i = indicePessoas + 1; i != indicePessoas; i++)
@@ -222,7 +263,7 @@ namespace ProjetoEscala.Controllers
             return RedirectToAction("Index", "Quadro");            
            
         }
-
+        */
 
 
         public async Task<IActionResult> LimparLocal()
@@ -257,7 +298,7 @@ namespace ProjetoEscala.Controllers
         }
 
 
-
+        /*
         public async Task<IActionResult> LimparTudoAJAX(int escalaId)
         {            
             var listaQuadro = await _context.Quadro
@@ -269,7 +310,7 @@ namespace ProjetoEscala.Controllers
             }                 
             return RedirectToAction("Index", "Quadro");     
         }
-
+        */
 
 
     }
