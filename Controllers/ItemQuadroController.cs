@@ -123,7 +123,7 @@ namespace ProjetoEscala.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> LocalGeralCreate(int LocalId)
+        public async Task<IActionResult> LocalGeralCreate(int LocalId, int quantidade)
         {            
             var escala = HttpContext.Session.GetInt32("Escala_Mes");      
                       
@@ -131,15 +131,15 @@ namespace ProjetoEscala.Controllers
                 .Where(q => q.EscalaId == escala).ToListAsync();            
 
             foreach (var item in listaQuadro){
-                ItemQuadro ItemQuadro = new ItemQuadro();
-                ItemQuadro.QuadroId = item.Id;
-                ItemQuadro.LocalId = LocalId;
+                for (int i = 0; i < quantidade; i++){
+                    ItemQuadro ItemQuadro = new ItemQuadro();
+                    ItemQuadro.QuadroId = item.Id;
+                    ItemQuadro.LocalId = LocalId;
 
-                _context.Add(ItemQuadro);
-                await _context.SaveChangesAsync();
-            }
-            
-     
+                    _context.Add(ItemQuadro);
+                    await _context.SaveChangesAsync();
+                }                
+            }            
             return RedirectToAction("Index", "Quadro");            
            
         }
