@@ -36,10 +36,10 @@
             <option value="0" selected="selected">Selecione Aqui a Escala / Mês</option>        
             @foreach (var item in ViewBag.Escala){
                 if(escala == item.Id){
-                    <option value="@item.Id" selected>@item.Mes</option>
+                    <option value="@item.Id" selected>@item.Nome</option>
                 }
                 else{
-                    <option value="@item.Id">@item.Mes</option>
+                    <option value="@item.Id">@item.Nome</option>
                 }                
             }            
         </select>

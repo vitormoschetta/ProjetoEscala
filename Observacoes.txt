@@ -1,5 +1,5 @@
 ﻿
 Contador de participa��o por pessoa
 
-Mudar atributo 'Mes' para 'Nome' da classe 'Escala'
+
 

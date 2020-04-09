@@ -36,7 +36,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Mes")] Escala Escala)
+        public async Task<IActionResult> Create([Bind("Id,Nome")] Escala Escala)
         {
             if (ModelState.IsValid){
                 _context.Add(Escala);
@@ -62,7 +62,7 @@ namespace ProjetoEscala.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Mes")] Escala Escala)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Escala Escala)
         {
             if (id != Escala.Id)
                 return NotFound();            

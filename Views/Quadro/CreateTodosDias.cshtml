@@ -11,10 +11,10 @@
                         <select id="EscalaId" name="EscalaId" class="form-control">
                             @foreach (var item in ViewBag.Escala){
                                 if (item.Id == Context.Session.GetInt32("Escala_Mes")){
-                                    <option value="@item.Id" selected>@item.Mes</option>
+                                    <option value="@item.Id" selected>@item.Nome</option>
                                 }         
                                 else{
-                                    <option value="@item.Id">@item.Mes</option>
+                                    <option value="@item.Id">@item.Nome</option>
                                 }                                     
                                 
                             }                                         
