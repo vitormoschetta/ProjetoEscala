@@ -1,6 +1,4 @@
 ﻿
-Ao adicionar local, dar opção de incluir mais de um registro de uma vez para o mesmo local;
-
 Contador de participa��o por pessoa
 
 Mudar atributo 'Mes' para 'Nome' da classe 'Escala'
