@@ -258,5 +258,19 @@ namespace ProjetoEscala.Controllers
 
 
 
+        public async Task<IActionResult> LimparTudoAJAX(int escalaId)
+        {            
+            var listaQuadro = await _context.Quadro
+                .Where(q => q.EscalaId == escalaId).ToListAsync();
+
+            foreach (var quadro in listaQuadro){               
+                _context.Quadro.Remove(quadro);
+                await _context.SaveChangesAsync();
+            }                 
+            return RedirectToAction("Index", "Quadro");     
+        }
+
+
+
     }
 }   

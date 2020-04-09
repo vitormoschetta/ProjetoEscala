@@ -53,3 +53,22 @@ function AtualizarLocal(local) {
     }    
 
 }
+
+
+
+function LimparTudoAJAX() {
+
+    var escala = document.getElementById("escala-id").value;
+    //var url = "/ItemQuadro/LimparTudo";
+    var url = $("#LimparTudoAJAX").data("url");  
+
+    //O correto era limpar detro da função abaixo. Porém como o SqLite tem baixa
+    //performance, estou limpando antes para ficar melhor a usabilidade, 
+    //enquanto o banco trabalha em segundo plano.
+    //$("#tabelaQuadro").empty();
+    
+    $.post(url, {escalaId: escala}, function (data)
+    {
+        $("#tabelaQuadro").empty();
+    }); 
+}

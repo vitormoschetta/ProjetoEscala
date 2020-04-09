@@ -1,5 +1,8 @@
 @using System.Globalization;
-
+@using Microsoft.AspNetCore.Http;
+@{
+    var escala = Context.Session.GetInt32("Escala_Mes");
+}
 
 @foreach (var item in ViewBag.ListaQuadro) 
 {
@@ -67,4 +70,6 @@
 </table>
 </div>
 }
+
+<input type="hidden" id="escala-id" name="escala-id" value="@escala"/>
 
