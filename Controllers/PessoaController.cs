@@ -20,38 +20,15 @@ namespace ProjetoEscala.Controllers
         {
             _context = context;    
         }
-
-
-        public async Task<IActionResult> AdicionarLocal(int localId, int pessoaId)
-        {            
-            PessoaLocal PessoaLocal = new PessoaLocal();
-            PessoaLocal.PessoaId = pessoaId;
-            PessoaLocal.LocalId = localId;
-
-            _context.Add(PessoaLocal);
-            await _context.SaveChangesAsync();
-
-            return PartialView("_ListaLocal");
-        }
-
-
-        public async Task<IActionResult> RetirarLocal(int localId, int pessoaId)
-        {            
-            var pessoaLocal = await _context.PessoaLocal
-                                .SingleOrDefaultAsync(p => p.PessoaId == pessoaId && p.LocalId == localId);
-
-            if (pessoaLocal != null){
-                 _context.PessoaLocal.Remove(pessoaLocal);
-                await _context.SaveChangesAsync();                
-            }
-            return PartialView("_ListaLocal");
-        }
-
+        
 
         public async Task<IActionResult> Index()
-        {            
-            var listaPessoa = await _context.Pessoa.ToListAsync();
-            return View(listaPessoa);
+        {
+            ViewBag.ListaLocal = await _context.Local.ToListAsync();
+            ViewBag.ListaPessoaLocal = await _context.PessoaLocal.ToListAsync();
+            ViewBag.ListaPessoa = await _context.Pessoa.ToListAsync();
+            
+            return View();
         }
            
 
@@ -82,11 +59,7 @@ namespace ProjetoEscala.Controllers
 
             var pessoa = await _context.Pessoa.SingleOrDefaultAsync(m => m.Id == id);
             if (pessoa == null)            
-                return NotFound();
-
-            //ViewBag.ListaLocal = await _context.Local.ToListAsync();
-            //ViewBag.ListaPessoaLocal = await _context.PessoaLocal
-                                        //.Where(p => p.PessoaId == pessoa.Id).ToListAsync();
+                return NotFound();            
             
             return View(pessoa);
         }
@@ -143,6 +116,35 @@ namespace ProjetoEscala.Controllers
         {
             return _context.Pessoa.Any(e => e.Id == id);
         }
+
+
+        public async Task<IActionResult> AdicionarLocal(int localId, int pessoaId)
+        {            
+            PessoaLocal PessoaLocal = new PessoaLocal();
+            PessoaLocal.PessoaId = pessoaId;
+            PessoaLocal.LocalId = localId;
+
+            _context.Add(PessoaLocal);
+            await _context.SaveChangesAsync();
+
+            return View("Index");
+            //return PartialView("_ListaLocal");
+        }
+
+
+        public async Task<IActionResult> ExcluirLocal(int localId, int pessoaId)
+        {            
+            var pessoaLocal = await _context.PessoaLocal
+                                .SingleOrDefaultAsync(p => p.PessoaId == pessoaId && p.LocalId == localId);
+
+            if (pessoaLocal != null){
+                 _context.PessoaLocal.Remove(pessoaLocal);
+                await _context.SaveChangesAsync();                
+            }
+            return View("Index");
+            //return PartialView("_ListaLocal");
+        }
+
     
     }
 }

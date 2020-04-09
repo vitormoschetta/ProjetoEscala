@@ -1,8 +1,4 @@
-@model IEnumerable<ProjetoEscala.Models.Pessoa>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
 <p>
     <a asp-action="Create">+ Novo</a>
@@ -13,34 +9,75 @@
             <th>
                 Nome
             </th>
-            <th>                
-            </th>
+            <th></th>
+            <th></th>
 
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) 
+    @foreach (var pessoa in ViewBag.ListaPessoa) 
     {
         <tr>
             <td>  
                 @{
                     //Apresenta nome na cor vermelha se estiver inativo:
-                    if (item.Ativo == 1){
+                    if (pessoa.Ativo == 1){
                         <div style="color: red;">
-                            @item.Nome
+                            <label>@pessoa.Nome</label>
+                            
                         </div>
                     }
                     else{
-                        @item.Nome
+                        <label>@pessoa.Nome</label>                        
                     }
                 }              
                 
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@pessoa.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@pessoa.Id">Delete</a>
+            </td>
+            <td>
+                <div id="listaLocal">
+                    @foreach (var local in ViewBag.ListaLocal){
+                        //Lista com todos os locais
+                        <input type="checkbox" id="@local.Id @pessoa.Id" value="@local.Id" onclick="AtualizarLocal(this.value, @pessoa.Id)"/>
+                        <label>@local.Nome</label>     
+
+                        //Lista de definições de pessoas/locais previamente configurados
+                        @foreach (var pessoaLocal in ViewBag.ListaPessoaLocal){
+                            
+                            /*Se nas definições configuradas algum registro possuir o Id do Local e da Pessoa 
+                            que se encontram aqui no loop:                                      */
+                            if (pessoaLocal.LocalId == local.Id && pessoaLocal.PessoaId == pessoa.Id){
+                                //Marca o componente checkbox definido a cima:
+                                var loc = local.Id;
+                                var pes = pessoa.Id;
+                                <script>
+                                    document.getElementById(@loc+" "+@pes).checked = true;
+                                </script>
+                            }
+                        }
+                    }    
+
+                </div>
             </td>
         </tr>
     }
     </tbody>
 </table>
+
+
+
+
+<!-- 
+    CONTROLES DE URL 
+-->
+<div id="adicionar-local" data-url="@Url.Action("AdicionarLocal","Pessoa")">
+</div>
+
+<div id="excluir-local" data-url="@Url.Action("ExcluirLocal","Pessoa")">
+</div>
+
+
+

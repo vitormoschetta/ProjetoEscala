@@ -23,13 +23,7 @@
                 </select>
                 <span asp-validation-for="Ativo" class="text-danger"></span>
             </div>
-        </div> 
-
-        <!--Lista de locais para selecionar onde a pessoa pode estar escalada
-        <div id="listaLocal">
-            await Html.PartialAsync("_ListaLocal")
-        </div>-->
-        
+        </div>                 
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -43,14 +37,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-
-
-
-<div id="adicionar-local" data-url="@Url.Action("AdicionarLocal","Pessoa")">
-</div>
-
-<div id="retirar-local" data-url="@Url.Action("RetirarLocal","Pessoa")">
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

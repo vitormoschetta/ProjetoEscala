@@ -1,5 +1,9 @@
-﻿
-Contador de participa��o por pessoa
+﻿- Opção de configurar a pessoa pra começar o loop da escala
 
+
+- Contador de participa��o por pessoa
+
+
+- table _tabelaQuadro por divs igual no print
 
 

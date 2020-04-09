@@ -25,6 +25,37 @@ function CheckedDestaque() {
 
 
 
+function AtualizarLocal(local, pessoa) {  
+    var url = "";
+        
+    if (document.getElementById(local.toString()+ " " +pessoa.toString()).checked == true){ 
+        //url = "/Pessoa/AdicionarLocal";
+        url = $("#adicionar-local").data("url");  
+        
+        $.post(url, {localId: local, pessoaId: pessoa}, function (data)
+        {                   
+            //$("#listaLocal").empty();
+            //$("#listaLocal").html(data);            
+        }); 
+        alert("Local Adicionado!");        
+    }
+    else {
+        //url = "/Pessoa/ExcluirLocal";
+        url = $("#excluir-local").data("url");         
+
+        $.post(url, {localId: local, pessoaId: pessoa}, function (data)
+        {       
+            
+            //$("#listaLocal").empty();
+            //$("#listaLocal").html(data);            
+        }); 
+        alert("Local Removido!");
+    }    
+
+}
+
+
+/*
 function AtualizarLocal(local) {  
 
     var pessoa = document.getElementById("Id").value;
@@ -53,7 +84,7 @@ function AtualizarLocal(local) {
     }    
 
 }
-
+*/
 
 /*
 function LimparTudoAJAX() {
