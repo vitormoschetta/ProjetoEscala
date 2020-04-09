@@ -22,8 +22,19 @@
     @foreach (var item in Model) 
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+            <td>  
+                @{
+                    //Apresenta nome na cor vermelha se estiver inativo:
+                    if (item.Ativo == 1){
+                        <div style="color: red;">
+                            @item.Nome
+                        </div>
+                    }
+                    else{
+                        @item.Nome
+                    }
+                }              
+                
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
