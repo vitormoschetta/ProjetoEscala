@@ -2,6 +2,41 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Firebird.Embedded/3.0.0.32485": {
+        "type": "package",
+        "dependencies": {
+          "FirebirdSql.Data.FirebirdClient": "5.0.0"
+        },
+        "build": {
+          "build/Firebird.Embedded.targets": {}
+        }
+      },
+      "FirebirdSql.Data.FirebirdClient/7.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
+      "FirebirdSql.EntityFrameworkCore.Firebird/7.5.0": {
+        "type": "package",
+        "dependencies": {
+          "FirebirdSql.Data.FirebirdClient": "7.5.0",
+          "Microsoft.EntityFrameworkCore": "3.1.1",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/FirebirdSql.EntityFrameworkCore.Firebird.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FirebirdSql.EntityFrameworkCore.Firebird.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
         "type": "package",
         "compile": {
@@ -962,7 +997,7 @@
           "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.IO.dll": {}
         }
       },
       "System.IO.FileSystem/4.3.0": {
@@ -1108,7 +1143,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.Reflection.dll": {}
         }
       },
       "System.Reflection.Emit/4.3.0": {
@@ -1121,7 +1156,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.1/_._": {}
+          "ref/netstandard1.1/System.Reflection.Emit.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.dll": {}
@@ -1135,7 +1170,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
@@ -1176,7 +1211,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Primitives.dll": {}
         }
       },
       "System.Reflection.TypeExtensions/4.3.0": {
@@ -1212,7 +1247,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
       "System.Runtime.Caching/4.5.0": {
@@ -1492,7 +1527,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Text.Encoding.dll": {}
         }
       },
       "System.Text.Encoding.CodePages/4.5.0": {
@@ -1577,7 +1612,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
       "System.Threading.Tasks.Extensions/4.3.0": {
@@ -1695,6 +1730,81 @@
     }
   },
   "libraries": {
+    "Firebird.Embedded/3.0.0.32485": {
+      "sha512": "ihEHQJWy21wYAxG12ZUxqOTM1isUsKuPds7TKi5+p7IkRiEOQEmdqjUJ1Qts8/0hTxUkpbulHQbVOEFr8NA+rQ==",
+      "type": "package",
+      "path": "firebird.embedded/3.0.0.32485",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Firebird.Embedded.targets",
+        "build/x64/fbclient.dll",
+        "build/x64/fbembed.dll",
+        "build/x64/ib_util.dll",
+        "build/x64/icudt52.dll",
+        "build/x64/icudt52l.dat",
+        "build/x64/icuin52.dll",
+        "build/x64/icuuc52.dll",
+        "build/x64/intl/fbintl.conf",
+        "build/x64/intl/fbintl.dll",
+        "build/x64/plugins.conf",
+        "build/x64/plugins/engine12.dll",
+        "build/x64/plugins/fbtrace.dll",
+        "build/x64/plugins/legacy_auth.dll",
+        "build/x64/plugins/legacy_usermanager.dll",
+        "build/x64/plugins/srp.dll",
+        "build/x64/plugins/udr_engine.conf",
+        "build/x64/plugins/udr_engine.dll",
+        "build/x86/fbclient.dll",
+        "build/x86/fbembed.dll",
+        "build/x86/ib_util.dll",
+        "build/x86/icudt52.dll",
+        "build/x86/icudt52l.dat",
+        "build/x86/icuin52.dll",
+        "build/x86/icuuc52.dll",
+        "build/x86/intl/fbintl.conf",
+        "build/x86/intl/fbintl.dll",
+        "build/x86/plugins.conf",
+        "build/x86/plugins/engine12.dll",
+        "build/x86/plugins/fbtrace.dll",
+        "build/x86/plugins/legacy_auth.dll",
+        "build/x86/plugins/legacy_usermanager.dll",
+        "build/x86/plugins/srp.dll",
+        "build/x86/plugins/udr_engine.conf",
+        "build/x86/plugins/udr_engine.dll",
+        "firebird.embedded.3.0.0.32485.nupkg.sha512",
+        "firebird.embedded.nuspec",
+        "lib/dotnet/_._"
+      ]
+    },
+    "FirebirdSql.Data.FirebirdClient/7.5.0": {
+      "sha512": "iWIrsXPM1q3PUBxMZIJl1JnwKuYtrEBXZYW5aa4mLtU4nxBAcY7FaGwUZwemSLfHm/wjDtOJvw7ragh/I9Joow==",
+      "type": "package",
+      "path": "firebirdsql.data.firebirdclient/7.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebirdsql.data.firebirdclient.7.5.0.nupkg.sha512",
+        "firebirdsql.data.firebirdclient.nuspec",
+        "lib/net452/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll",
+        "license.txt",
+        "readme.txt"
+      ]
+    },
+    "FirebirdSql.EntityFrameworkCore.Firebird/7.5.0": {
+      "sha512": "VVJkG21DkT5MWmfBRBPk31oWa/7flCNL0B3b+Z4ZEhnJ3q5NuKqZrVvI3RV1p4OckFXImritML4u7kaOc/h8VQ==",
+      "type": "package",
+      "path": "firebirdsql.entityframeworkcore.firebird/7.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebirdsql.entityframeworkcore.firebird.7.5.0.nupkg.sha512",
+        "firebirdsql.entityframeworkcore.firebird.nuspec",
+        "lib/netstandard2.0/FirebirdSql.EntityFrameworkCore.Firebird.dll",
+        "license.txt"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
       "sha512": "GXmMD8/vuTLPLvKzKEPz/4vapC5e0cwx1tUVd83ePRyWF9CCrn/pg4/1I+tGkQqFLPvi3nlI2QtPtC6MQN8Nww==",
       "type": "package",
@@ -5948,6 +6058,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Firebird.Embedded >= 3.0.0.32485",
+      "FirebirdSql.EntityFrameworkCore.Firebird >= 7.5.0",
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 3.1.2",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.1",
@@ -5994,6 +6106,14 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Firebird.Embedded": {
+            "target": "Package",
+            "version": "[3.0.0.32485, )"
+          },
+          "FirebirdSql.EntityFrameworkCore.Firebird": {
+            "target": "Package",
+            "version": "[7.5.0, )"
+          },
           "Microsoft.AspNetCore.Session": {
             "target": "Package",
             "version": "[2.2.0, )"

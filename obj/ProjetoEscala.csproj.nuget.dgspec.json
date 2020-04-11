@@ -38,6 +38,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Firebird.Embedded": {
+              "target": "Package",
+              "version": "[3.0.0.32485, )"
+            },
+            "FirebirdSql.EntityFrameworkCore.Firebird": {
+              "target": "Package",
+              "version": "[7.5.0, )"
+            },
             "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"

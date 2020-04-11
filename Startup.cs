@@ -33,21 +33,31 @@ namespace ProjetoEscala
             //Conexao MySql
             //services.AddDbContext<Contexto>(options =>
                 //options.UseMySql(Configuration["ConexaoMySql:DefaultConnection"]));
+
+            //Sql Server
+            //services.AddDbContext<Contexto>(options =>
+                //options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
                 
-
-            //Conexao SqLite
-            /*services.AddDbContext<Contexto>(options =>
-                options.UseSqlite(Configuration["ConexaoSqLite:DefaultConnection"]));
-                */
-
-            //Conexao Sql Server Compact
-            /*services.AddDbContext<Contexto>(options =>
-                options.UseSqlite(Configuration["ConexaoSqlCompact:DefaultConnection"]));
-                */
-
-            //Conexao Sql Server LocalDB
+            //Conexao Sql Server LocalDB 
             services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServerLocalDB")));
+
+            //Conexao SqLite (integrado)
+            //services.AddDbContext<Contexto>(options =>
+                //options.UseSqlite(Configuration["ConexaoSqLite:DefaultConnection"]));
+            
+            //Conexao Sql Server Compact (integrado)
+            //services.AddDbContext<Contexto>(options =>
+                //options.UseSqlite(Configuration["ConexaoSqlCompact:DefaultConnection"]));                
+
+            //Conexao Firebird Embbed (integrado)
+            //services.AddDbContext<Contexto>(options =>
+                //options.UseFirebird(Configuration["ConexaoFirebird:DefaultConnection"]));
+
+            
+
+            
+            
           
             //Session
             services.AddDistributedMemoryCache();

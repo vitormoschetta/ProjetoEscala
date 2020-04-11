@@ -58,8 +58,10 @@ namespace ProjetoEscala.Controllers
         {                        
             ViewBag.Local = await _context.Local.ToListAsync();
             ViewBag.Pessoa = await _context.Pessoa.ToListAsync();
-            ViewBag.Escala = await _context.Escala
-                .FromSqlRaw("SELECT TOP 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
+            ViewBag.Escala = await _context.Escala.OrderByDescending(e => e.Id).ToListAsync();
+                //.FromSqlRaw("SELECT FIRST 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
+            //ViewBag.Escala = escala.Take(12);
+
             ViewBag.Evento = await _context.Evento.ToListAsync();             
             ViewBag.ItemQuadro = await _context.ItemQuadro.ToListAsync(); 
     
@@ -108,8 +110,8 @@ namespace ProjetoEscala.Controllers
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Escala = await _context.Escala
-                .FromSqlRaw("SELECT TOP 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
+            ViewBag.Escala = await _context.Escala.OrderByDescending(e => e.Id).ToListAsync();
+                //.FromSqlRaw("SELECT FIRST 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();
 
             return View();
@@ -129,8 +131,8 @@ namespace ProjetoEscala.Controllers
 
         public async Task<IActionResult> CreateTodosDias()
         {            
-            ViewBag.Escala = await _context.Escala
-                .FromSqlRaw("SELECT TOP 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
+            ViewBag.Escala = await _context.Escala.OrderByDescending(e => e.Id).ToListAsync();
+                //.FromSqlRaw("SELECT FIRST 12 * FROM ESCALA ORDER BY ID DESC").ToListAsync();
             ViewBag.Evento = await _context.Evento.ToListAsync();
 
             return View();
