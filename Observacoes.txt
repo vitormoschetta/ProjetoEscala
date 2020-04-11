@@ -1,4 +1,5 @@
 ﻿- Opção de configurar a pessoa pra começar o loop da escala
+    ou Pegar ultima pessoa da Escala Anterior
 
 
 - Contador de participa��o por pessoa
