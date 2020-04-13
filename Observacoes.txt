@@ -1,10 +1,49 @@
-﻿- Opção de configurar a pessoa pra começar o loop da escala
+﻿ESCALA SERVE PARA RH DE EMPRESAS(Horas trabalhadas, faltas, horas extras, autorização de horas extras, etc...)
+    - Para que o RH tenha o controle, seria necessário Ser em nuvem. Ou hospedar para a empresa. 
+
+- Escala por turnos (definir nome e intervalo de horário)
+
+- Escala por jornada (ex: 12x36 )
+
+- Opção de configurar a pessoa pra começar o loop da escala
     ou Pegar ultima pessoa da Escala Anterior
 
 
 - Contador de participa��o por pessoa
 
+- Perfis: Para solicitar autorização de extras e autorizar (pensar nos postos)
+    - O RH vai poder fazer a sua função: gerir e motivar pessoas
 
 - table _tabelaQuadro por divs igual no print
 
+- Escala por Hora
+
+- Valor R$ por hora ou plantão
+
+- Escala de sobre-aviso
+
+- Mural para recados
+
+- Dashboard (graficos e relatorios)
+
+    - Horas trabalhadas por pessoa em periodo especifico
+    - Quantidade plantões por pessoa
+    - faltas poor pessoa
+    - Extra por pessoa
+
+- App para plantonistas
+
+- Checkin geolocalizador (no caso de uso de aparelho pessoal)
+
+- Checkin usuario e senha (no caso de aparelho da empresa)
+
+- app leitor digitais
+
+- Alertas de conformidades trabalhistas
+
+- Registrar falta
+
+- gerar relatório de ponto manual
+
+-
 

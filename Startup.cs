@@ -31,16 +31,16 @@ namespace ProjetoEscala
             services.AddControllersWithViews();
 
             //Conexao MySql
-            //services.AddDbContext<Contexto>(options =>
-                //options.UseMySql(Configuration["ConexaoMySql:DefaultConnection"]));
+            services.AddDbContext<Contexto>(options =>
+                options.UseMySql(Configuration["ConexaoMySql:DefaultConnection"]));
 
             //Sql Server
             //services.AddDbContext<Contexto>(options =>
                 //options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
                 
             //Conexao Sql Server LocalDB 
-            services.AddDbContext<Contexto>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServerLocalDB")));
+            //services.AddDbContext<Contexto>(options =>
+                //options.UseSqlServer(Configuration.GetConnectionString("SqlServerLocalDB")));
 
             //Conexao SqLite (integrado)
             //services.AddDbContext<Contexto>(options =>
@@ -54,9 +54,7 @@ namespace ProjetoEscala
             //services.AddDbContext<Contexto>(options =>
                 //options.UseFirebird(Configuration["ConexaoFirebird:DefaultConnection"]));
 
-            
-
-            
+                        
             
           
             //Session
