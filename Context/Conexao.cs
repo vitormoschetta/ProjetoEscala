@@ -50,7 +50,9 @@ namespace ProjetoEscala.Context
             using (MySqlConnection conn = GetConnection()){
                 conn.Open();      
                 string comando = "SELECT pessoaId FROM pessoalocal";
+                comando = comando + " INNER JOIN pessoa ON pessoa.id = pessoalocal.pessoaId";
                 comando = comando + " where localId = " + localId;        
+                comando = comando + " and pessoa.ativo = 2";
                 MySqlCommand cmd = new MySqlCommand(comando, conn);  
         
                 using (var reader = cmd.ExecuteReader()){  
