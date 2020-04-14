@@ -30,9 +30,9 @@ namespace ProjetoEscala
         {
             services.AddControllersWithViews();
 
-            //Conexao MySql
+            //Conexao MySql para Entity Framework
             services.AddDbContext<Contexto>(options =>
-                options.UseMySql(Configuration["ConexaoMySql:DefaultConnection"]));
+                options.UseMySql(Configuration["ConexaoMySql:DefaultConnection"]));                
 
             //Sql Server
             //services.AddDbContext<Contexto>(options =>

@@ -17,10 +17,13 @@ namespace ProjetoEscala.Controllers
     public class ItemQuadroController: Controller
     {
         private readonly Contexto _context;
+        private readonly Conexao _conexao;
 
         public ItemQuadroController(Contexto context) 
         {
-            _context = context;    
+            _context = context;  
+            _conexao = new Conexao();
+
         }
 
         public async Task<IActionResult> Create(int Id)
@@ -145,72 +148,55 @@ namespace ProjetoEscala.Controllers
         }
 
        
-        
         public async Task<IActionResult> GerarEscala()
-        {            
-            var escala = HttpContext.Session.GetInt32("Escala_Mes");                            
-            // Lista de Quadro pertencentes ao Mês selecionado (Session 'Escala_mes'):
-            var listaQuadro = await _context.Quadro.Where(q => q.EscalaId == escala).ToListAsync();   
-            // lista todas as pessoas
-            var listaPessoa = await _context.Pessoa.Where(p => p.Ativo == 2).ToListAsync();  
-            //Pega nr total de pessoas:                               
-            int totalPessoas = listaPessoa.Count;
+        {   // Id da escala selecionada:         
+            var escala = HttpContext.Session.GetInt32("Escala_Mes");          
+            // Lista de quadros/dias contidos na escala selecionada: 
+            var listaQuadroId = _conexao.ListaQuadroIdPorEscala(Convert.ToInt32(escala));                    
+            // Lista o Id dos locais diferentes/agrupados da tabela 'PessoaLocal' => configuracao do local que cada pessoa pode ser escalada
+            IList<int> listaLocaisDiferentesNaEscala = _conexao.ListaLocalIdAgrupado(Convert.ToInt32(escala));
+            // Obs: Cada local contido na lista acima, terá uma lista de Pessoas pre configuradas para ser escalada para este local especifico
+            // Contador de quantos loops terei que dar nos quadros desta escala:            
+            int quantidadeLoop = listaLocaisDiferentesNaEscala.Count;                        
             
-            int indicePessoas = 0;
-            //Inicia Laço: Quadro por Quadro do Mês selecionado            
-            foreach (var quadro in listaQuadro){
-                //Lista registros da tabela ItemQuadro do Quadro atual no laço:
-                var listaItemQuadro = await _context.ItemQuadro.Where(p => p.QuadroId == quadro.Id).ToListAsync();
-                //Laço com lista de registros da tabela ItemQuadro:                
-                foreach (var itemQuadro in listaItemQuadro){    
-                    /*Atualiza registro da tabela ItemQuadro com informaçõa da Pessoa, a partir da lista total de 
-                    Pessoas. Quando toda a lista de pessoas é percorrida, o registro volta para o início, fazendo um
-                    loop nas pessoas até que toda a escala esteja preenchida. Para isso usa-se as variáveis 'cont', 
-                    que funciona como contador da lista, e a variável 'totalPessoas', que faz o controle da quantidade
-                    de pessoas, informando a hora de retornar para o início se a lista atingir o total:          */                    
-                    var listaPessoaLocal = await _context.PessoaLocal.Where(p => p.PessoaId == listaPessoa[indicePessoas].Id).ToListAsync();
+            // Bloco de instancias => Para não sobrecarregar novas instancias em memória durante o loop
+            IList<int> listaPessoaId = new List<int>();               
+            int indicePessoas = new int();  
+            int quantidadePessoas = new int();                        
+            
+            // Iniciando o loop de controle de local específico a preencher
+            for (int i = 0; i < quantidadeLoop; i++){
+                listaPessoaId.Clear(); // A cada loop é necessário limpar a lista do loop anterior
+                // lista de pessoas cujo local configurado é igual ao local atual no loop (listaLocaisDiferentesNaEscala[i]):
+                listaPessoaId = _conexao.ListaPessoaIdDeLocalEspecifico(listaLocaisDiferentesNaEscala[i]);
+                // Contador de quantidade de pessoas para controlle do loop:
+                quantidadePessoas = listaPessoaId.Count;   
+                // Controlador do loop de pessoas => interage com 'quantidadePessoas':
+                indicePessoas = 0;
 
-                    foreach (var pessoaLocal in listaPessoaLocal){
-                        if(pessoaLocal.LocalId == itemQuadro.LocalId){
-                            itemQuadro.PessoaId = listaPessoa[indicePessoas].Id;                    
+                // Loop de controle de Quadro 
+                foreach (var quadroId in listaQuadroId){
+                    var listaItemQuadro = await _context.ItemQuadro.Where(iq => iq.QuadroId == quadroId).ToListAsync();
+                    // Loop de controle de itemQuadro
+                    foreach (var itemQuadro in listaItemQuadro){
+                        if (itemQuadro.LocalId == listaLocaisDiferentesNaEscala[i]){
+                            //Se o 'itemQuadro' tiver o 'LocalId' igual o 'listaLocaisDiferentesNaEscala' em loop[i]:
+                            itemQuadro.PessoaId = listaPessoaId[indicePessoas];
                             _context.Update(itemQuadro);
-                            await _context.SaveChangesAsync();       
-                        }
-                    }    
-                                        
-                    if(itemQuadro.PessoaId == 0){
-                        int cont = indicePessoas + 1;
-                        //for funciona? se nao der tentar While
-                        for(int i=cont; i != indicePessoas; i++ ){
-                            if (itemQuadro.PessoaId != 0){
-                                break;
-                            }//////
-                            if (i == totalPessoas)
-                                i = 0;
-                            listaPessoaLocal = await _context.PessoaLocal.Where(p => p.PessoaId == listaPessoa[i].Id).ToListAsync();
-                            foreach (var pessoaLocal in listaPessoaLocal){
-                                if(pessoaLocal.LocalId == itemQuadro.LocalId){
-                                    itemQuadro.PessoaId = listaPessoa[i].Id;                    
-                                    _context.Update(itemQuadro);
-                                    await _context.SaveChangesAsync();       
-                                }
-                            }
-                            
-                        }
-                    }                      
+                            await _context.SaveChangesAsync();   
 
-                    indicePessoas++;
-                    //se 'cont' tiver o número total de pessoas, 'cont' volta para o valor zero.
-                    if (indicePessoas >= totalPessoas)
-                        indicePessoas = 0;
-
-                }       
-            }                                         
-            return RedirectToAction("Index", "Quadro");                       
+                            indicePessoas++;
+                            //quando atingir a ultima pessoa da listaPessoaLocalEspecifi, o indice volta pra zero:
+                            if (indicePessoas >= quantidadePessoas)
+                                indicePessoas = 0;     
+                        }                                                
+                    }
+                }            
+            }
+            return RedirectToAction("Index", "Quadro");  
         }
 
 
-     
 
         public async Task<IActionResult> LimparPessoas()
         {
