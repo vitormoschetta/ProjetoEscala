@@ -150,11 +150,11 @@ namespace ProjetoEscala.Controllers
        
         public async Task<IActionResult> GerarEscala()
         {   // Id da escala selecionada:         
-            var escala = HttpContext.Session.GetInt32("Escala_Mes");          
+            int escala = Convert.ToInt32(HttpContext.Session.GetInt32("Escala_Mes"));          
             // Lista de quadros/dias contidos na escala selecionada: 
-            var listaQuadroId = _conexao.ListaQuadroIdPorEscala(Convert.ToInt32(escala));                    
+            var listaQuadroId = _conexao.ListarQuadroIdPorEscala(escala);                    
             // Lista o Id dos locais diferentes/agrupados da tabela 'PessoaLocal' => configuracao do local que cada pessoa pode ser escalada
-            IList<int> listaLocaisDiferentesNaEscala = _conexao.ListaLocalIdAgrupado(Convert.ToInt32(escala));
+            IList<int> listaLocaisDiferentesNaEscala = _conexao.ListarLocalIdAgrupado(escala);
             // Obs: Cada local contido na lista acima, terá uma lista de Pessoas pre configuradas para ser escalada para este local especifico
             // Contador de quantos loops terei que dar nos quadros desta escala:            
             int quantidadeLoop = listaLocaisDiferentesNaEscala.Count;                        
@@ -165,14 +165,30 @@ namespace ProjetoEscala.Controllers
             int quantidadePessoas = new int();                        
             
             // Iniciando o loop de controle de local específico a preencher
-            for (int i = 0; i < quantidadeLoop; i++){
+            for (int i = 0; i < quantidadeLoop; i++){            
                 listaPessoaId.Clear(); // A cada loop é necessário limpar a lista do loop anterior
                 // lista de pessoas cujo local configurado é igual ao local atual no loop (listaLocaisDiferentesNaEscala[i]):
-                listaPessoaId = _conexao.ListaPessoaIdDeLocalEspecifico(listaLocaisDiferentesNaEscala[i]);
+                listaPessoaId = _conexao.ListarPessoaIdDeLocalEspecifico(listaLocaisDiferentesNaEscala[i]);
                 // Contador de quantidade de pessoas para controlle do loop:
                 quantidadePessoas = listaPessoaId.Count;   
                 // Controlador do loop de pessoas => interage com 'quantidadePessoas':
                 indicePessoas = 0;
+
+
+                //#######################################
+                IList<ItemQuadro> listaItemEscalaAnterior = _conexao.ListaItemUltimoQuadro(escala);
+                if (listaItemEscalaAnterior != null ){
+                    foreach (var item in listaItemEscalaAnterior){
+                        if (item.LocalId == listaLocaisDiferentesNaEscala[i]){
+                            for (int i2 = 0; i2 < listaPessoaId.Count; i2++){
+                                if(listaPessoaId[i2] == item.PessoaId)
+                                    indicePessoas = i2 + 1;
+                            }                            
+                        }
+                    }
+                }
+                //#######################################
+
 
                 // Loop de controle de Quadro 
                 foreach (var quadroId in listaQuadroId){

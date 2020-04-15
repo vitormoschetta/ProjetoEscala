@@ -1,9 +1,6 @@
 ﻿ESCALA SERVE PARA RH DE EMPRESAS(Horas trabalhadas, faltas, horas extras, autorização de horas extras, etc...)
     - Para que o RH tenha o controle, seria necessário Ser em nuvem. Ou hospedar para a empresa. 
 
-- Escala por turnos (definir nome e intervalo de horário)
-
-- Escala por jornada (ex: 12x36 )
 
 - Opção de configurar a pessoa pra começar o loop da escala
     ou Pegar ultima pessoa da Escala Anterior
